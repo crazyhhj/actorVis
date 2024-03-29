@@ -1,6 +1,6 @@
 <template>
     <!-- {{ this.$store.state.slugInfromation }} -->
-    <div style="height: 100%;">
+    <div style="height: 100%; font-family: Avenir, Helvetica, Arial, sans-serif;overflow-x: hidden;overflow-y: scroll;">
         <el-collapse  v-for="(slug,index) in this.$store.state.slugInfromation" :key="slug">
             <el-collapse-item >
                 <!-- <template > -->
@@ -114,10 +114,18 @@ export default {
 .dia {
     white-space: pre-wrap;
     text-align: center;
-
+    font-family: Avenir, Helvetica, Arial, sans-serif;
     height: 309px; overflow-y: scroll;display: block; font-size: 14pt;  border: 3px;
+    overflow-y: hidden;
 }
 .dia::-webkit-scrollbar {
+ 
     width: 0;
 }
+
+.diaa::-webkit-scrollbar { width: 0 !important }
+
+.diaa{ -ms-overflow-style: none; }
+
+.diaa{ overflow: -moz-scrollbars-none; }
 </style>

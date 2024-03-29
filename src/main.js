@@ -1,3 +1,4 @@
+import '@/assets/css/public.css'
 // import Vue from 'vue'
 import { createApp } from 'vue';
 import App from './App.vue';
@@ -11,7 +12,7 @@ import '../node_modules/element-plus/dist/index.css'
 // import store from '@/store/index.js'
 import store from '@/store/store.js'
 
-import 'font-awesome/css/font-awesome.min.css'
+// import 'font-awesome/css/font-awesome.min.css'
 
 const eventBus = mitt();
 const app = createApp(App);

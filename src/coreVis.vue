@@ -217,6 +217,7 @@ export default {
   /* height: 1690px; */
   height: 1440px;
   /* height: 1225px; */
+  font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
 #flat {
@@ -319,6 +320,7 @@ body>.el-container {
 
 div {
   box-sizing: border-box;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
 /* Container for the title and text */
@@ -378,7 +380,7 @@ div {
 <!-- 1、总览出场人物，以及剧情大致起伏
 2、按单元章节进行探索，得到章节内人物关系 人物重要性，以及情感分析 -->
 
-设计理念一定是和功能紧密结合的，也就是从功能的角度出发，完整的触发完一整套的功能需要用到哪些组件，对这些组件进行设计探索
+<!-- 设计理念一定是和功能紧密结合的，也就是从功能的角度出发，完整的触发完一整套的功能需要用到哪些组件，对这些组件进行设计探索
 [
   [
     {
@@ -416,4 +418,4 @@ div {
             语言多寡:语言又分为交流式语言和独白式语言,对这两种不同维度上的语言进行分析，通过多寡来进行评判，
               [对剧本进行电影类型进行识别可能是不必要的]甚至可以通过内心独白性的语言或者交流式语言对该剧本进行类型分类}
           }
-        ]
+        ] -->

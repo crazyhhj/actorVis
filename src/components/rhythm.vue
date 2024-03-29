@@ -1,54 +1,69 @@
 <template>
-    <div style="width: 100%; padding-left: 50px;border: gray solid 1px;" class="top_nav_box">
+    <div style="width: 100%; padding-left: 50px;" class="top_nav_box">
         <div>
             <el-slider v-model="showChapter1" :max="127" show-stops>
             </el-slider>
         </div>
         <div style="border-left: gainsboro solid 4px;" class="button_box_nav">
             <!-- <el-button @click="showRhythmLine" type="primary" plain>点击显示</el-button> -->
-            <el-button @click="showRhythmLine" type="primary" plain>Show</el-button>
-            <el-button @click="clear">clear</el-button>
+            <el-button icon="el-icon-search" @click="showRhythmLine"  style="width:50%;">Show</el-button>
+            <el-button icon="el-icon-delete" @click="clear"  style="width:50%;margin-left: 0;">Clear</el-button>
         </div>
     </div>
     <div class="container_rhythm">
         <div class="sub_container">
-            <div style="border: gray solid 1px;">
+            <div>
                 <div class="chartContainer" ref="rhythmLineArea" id="ss"></div>
                 <div class="chartContainer" id="timerect" style="height:40px;"></div>
                 <div class="chartContainer" id="chainChart" style="height:200px;"></div>
             </div>
-            <div class="chartContainer" style="height: 10px; padding-left: 50px; padding-right:50px; " >
-                <span style="float: left; font-size: 2em; margin-left: 50px;">Performance guidance {{ perGudType=='ty'?'Experientialist':perGudType=='ff'?'Methodologist':'Performance-oriented' }}</span>
-                <!-- <span style="float: left; font-size: 2em;margin-left: 330px;">表演指导 {{ perGudType }}</span> -->
-                <span style="float: right; font-size: 2em; margin-right: 60px;"> Dialogue and emotion</span>
+            <div class="chartContainer" style="height: 40px; padding-left: 50px; padding-right:50px;background-color: rgb(148, 178, 210);">
+                <span style="float: left; font-size: 1.1em; margin-left: 170px;margin-bottom: 10px;margin-top: 10px;color: white;">Performance Guidance {{ perGudType=='ty'?'Experientialist':perGudType=='ff'?'Methodologist':'Performance-oriented' }}</span>
+               <!-- <div class="Container" style="display:inline-block;border-right: 10px solid white;width: 757px;">  <span style="float: left; font-size: 1.1em; margin-left: 170px;margin-bottom: 10px;margin-top: 10px;color: white;">Performance Guidance {{ perGudType=='ty'?'Experientialist':perGudType=='ff'?'Methodologist':'Performance-oriented' }}</span></div> -->
+                <span style="float: right; font-size: 1.1em; margin-right:90px;margin-bottom: 10px;margin-top: 10px;color: white;"> Dialogue and Emotion</span>
                 <!-- <span style="float: right; font-size: 2em; margin-right: 120px;"> 对白与情感</span> -->
 
             </div>
-            <div class="chartContainer" id="per_any" style="height:340px; ">
-                <div id="PerformanceGuidanceDetails" style="border-right: gainsboro solid 2px;">
+            <div class="chartContainer" id="per_any" style="height:440px;width: 1427px; font-family: Avenir, Helvetica, Arial, sans-serif;overflow-y: auto;">
+                <div id="PerformanceGuidanceDetails" style="border-right: gainsboro solid 2px; font-family: Avenir, Helvetica, Arial, sans-serif;">
 
                 </div>
-                <div id="emo_ring">
+                <div id="emo_ring" style=" font-family: Avenir, Helvetica, Arial, sans-serif;overflow-x: hidden;height:100%;width: 100%; ">
                 </div>
             </div>
             <!-- <div class="chartContainer" id="chainChart" style="height:200px;">
                 {{ showtext }}</div> -->
 
         </div>
-        <div class="sub_container" id="performance_methods" style="width: 300px; border-left: gainsboro solid 2px;">
-            <div id="performSelection" @click="guide">
-                <div class="detail" id="ty" @click=""></div>
-                <div class="detail" id="ff"></div>
-                <div class="detail" id="bx"></div>
-            </div>
-            <!-- <span>emotion contrast</span> -->
-            <span>Script</span>
-            <div id="emo_line" style="height: 680px;width: 350px; border-color: #dcdcdc; overflow: scroll;">
+        <div class="sub_container" id="performance_methods" style="width: 360px; border-left: gainsboro solid 2px;">
+            <div class="script-h1" style="font-size: 1.1em;padding:10px 0;width: 355px;background-color: rgb(148, 178, 210);height: 40px;"> <span style="color:white">Script</span></div>
+            <div id="emo_line" style="height: 800px;width: 350px; border-color: #dcdcdc;border-bottom: gainsboro solid 2px;">
                 <slideText/>
             </div>
+            <!-- 下拉框 -->
+            <div class="script-h1" style="font-size: 1.1em;padding-top:10px;width: 355px;background-color: rgb(148, 178, 210);height: 40px;"> <span style="color:white">Guidance</span></div>
+            <!-- <h1>GUIDANCE</h1> -->
+            <el-select v-model="guidance" placeholder="GUIDANCE" class="select">
+                    <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                    </el-option>
+                </el-select>
+                <el-card class="box-card" style="margin:0 30px 0 30px;height: 350px;"  @click="guide(this.content[0])">
+                    <div style="height: 130px;white-space:normal; word-break:break-all;overflow:hidden;line-height: 30px">{{ content[2] }}<br>{{ content[1] }}</div>
+                    <div v-show="this.content[0]" style="height: 270px;white-space:normal; word-break:break-all;overflow:hidden;line-height: 40px">
+                        <span>emotion</span><el-progress :percentage="this.percentage[0]" :stroke-width="20" :color="customColors[0].color"></el-progress>
+                        <span>action</span><el-progress :percentage="this.percentage[1]" :stroke-width="20" :color="customColors[1].color"></el-progress>
+                        <span>interaction</span><el-progress :percentage="this.percentage[2]" :stroke-width="20" :color="customColors[2].color"></el-progress>
+                    </div>
+                </el-card>
+            <!-- <span>emotion contrast</span> -->
+          
         </div>
     </div>
-    <div id="tooltip_g">{{ guide_text }}</div>
+    <!-- <div id="tooltip_g">{{ guide_text }}</div> -->
     <!-- <div id="heartLine" style="width: 100%; height: 100%;">
     </div> -->
 </template>
@@ -79,13 +94,55 @@ export default {
             screen_num: this.$store.state.slugIndexList,
             trendList:[],
             perGudType: '',
-            guide_text:'指导'
+            guide_text:'指导',
+            options: [{
+          value: 'Experiential',
+          label: 'Experiential'
+        }, {
+          value: 'Methodism',
+          label: 'Methodism'
+        }, {
+          value: 'Expressionism',
+          label: 'Expressionism'
+        }],
+        guidance: '',
+        customColors: [
+          
+          {color: '#5cb87a', percentage: 60},
+          {color: '#1989fa', percentage: 80},
+          {color: '#e6a23c', percentage: 40},
+         
+         
+        ]
 
         }
     },
     mounted() {
     },
     computed: {
+        content(){
+            if(this.guidance == 'Experiential'){
+                return [ 'ty','Stanislavski,Tease the heart of the show','Experiential'];
+            }else if(this.guidance == 'Methodism'){
+                return ['ff',`is the development of 'the system 'Is to use specific methods to solve the problem`,'Methodism'];
+            }else if(this.guidance == 'Expressionism'){
+                return ['bx','simply means being able to convey emotions effectively.','Expressionism']
+            }else{
+                return [];
+            }
+        },
+
+        percentage(){
+            if(this.guidance == 'Experiential'){
+                return [80,40,20];
+            }else if(this.guidance == 'Methodism'){
+                return [25,90,45];
+            }else if(this.guidance == 'Expressionism'){
+                return [56,30,88]
+            }else{
+                return [];
+            }
+        }
 
     },
     watch: {
@@ -101,7 +158,7 @@ export default {
         showChapter1: {
             handler: function (showChapter1) {
                 this.$store.commit('sendIndexToRelation', showChapter1);
-                this.lineH(showChapter1);
+                // this.lineH(showChapter1);
                 const init  = this.$store.state.initTrendList;
                 const that = this;
                 for(let i of init){
@@ -916,7 +973,8 @@ export default {
         },
 
         guide(e) {
-            const type = e.target.id;
+            console.log(e);
+            const type = e;
             const that = this;
             this.perGudType = type;
             const { Joker,JokerGuide, ws1, ws2, ws3, young_women } = subwayData;
@@ -1373,6 +1431,12 @@ export default {
 </script>
 
 <style>
+body{
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+.select{
+    margin:20px 20px;
+}
 .container_rhythm {
     display: grid;
     grid-template-columns: 4fr 1fr;
@@ -1395,7 +1459,9 @@ export default {
     /* width: 1500px; */
     width: 100%;
     height: 600px;
-    color: #695d5d;
+    /* color: rgb(102, 102, 102); */
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-size:1.1em;
 
     
     /* color: #f0c313; */
@@ -1429,6 +1495,7 @@ export default {
     grid-template-rows: 349px, 349px;
     /* 第一列宽度为9，第二列宽度为1 */
     grid-gap: 10px;
+   
 }
 
 #emo_ring {
@@ -1438,12 +1505,13 @@ export default {
 .button_box_nav{
     display: flex;
     justify-content: space-between;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
 #tooltip_g {
       position: absolute;
       background-color: white;
-      border: 1px solid black;
+      /* border: 1px solid black; */
       border-radius: 5px;
       padding: 5px;
       display: none;
@@ -1453,12 +1521,19 @@ export default {
       white-space: pre-wrap;
     }
 #emo_line{
-    height: 1000px;
+    height: 700px;
     width: 350px; 
     border-color: #dcdcdc; 
-    overflow: scroll;
-    position: absolute; /* 绝对定位 */
+    
+    /* position: absolute; 
     left:2200px;
-    top:750px;
+    top:750px; */
 }
+.text {
+    font-size: 12px;
+  }
+
+  .item {
+    margin-bottom: 18px;
+  }
 </style>

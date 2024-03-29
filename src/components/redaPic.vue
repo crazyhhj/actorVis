@@ -68,7 +68,7 @@ export default {
                 4, 4, 4, 4,
                 5, 5, 5, 5, 5, 5, 5
             ]
-            const typeEmo = ['Calm', 'depressed', 'aggressive', 'introverted positive', 'extroverted positive', 'emotionless']
+            const typeEmo = ['angry', 'sad', 'calm', 'content', 'afraid', 'proud']
             // const typeEmo = ['冷静','抑郁','好斗','内向积极','外向积极','无感情']
             let actor = emoData.map(d => d.name)
             const emotionMap = d3.scaleOrdinal().domain(emoConstrast).range(axeConstrast)
@@ -161,7 +161,6 @@ export default {
                 .text(d => `${(d[1] + 1) * Math.ceil(maxValue / 5)}`)
 
 
-
             group.selectAll(".level")
                 .data([1, 2, 3, 4, 5, 6])
                 .join("line")
@@ -177,25 +176,83 @@ export default {
                 .style("stroke", "gray")
                 .style("transform", d => `rotate(${d * 60}deg)`)
 
+            
 
+//                 var textPoints = [];
+//                 var textRadius = redaSize + 20;
+//                 for(var i=0;i<6;i++) {
+//                     var x = textRadius * Math.sin(i * 60),
+//                             y = textRadius * Math.cos(i * 60);
+//                     textPoints.push({
+//                         x: x,
+//                         y: y
+//                     });
 
+//                     group.selectAll(".emoType")
+//                     .data(textPoints)
+//                     .join("g")
+//                     .attr("class", "emoType")
+//                     .enter()
+//                     .append('text')
+//                     .attr('x', function(d) {
+//                         return d.x;
+//                     })
+//                     .attr('y', function(d) {
+//                         return d.y;
+//                     })
+//                     .text(function(d,i) {
+//                         return typeEmo[i];
+//                     });  
+                
+// }  
+    //             group.selectAll(".emoType")
+    //             .data(typeEmo)
+    //             .join("g")
+    //             .attr("class", "emoType")
+                
+    //             .call(g =>
+    //                 g.append('text')
+    //                     .attr("x", (d, i) => {
+    //                         const angle = i * (360 / typeEmo.length); // 根据数据点数量动态计算角度
+    //                         return xScale(9) * Math.cos(angle * Math.PI / 180); // 设置文本的水平位置
+    //                     })
+    //                     .attr("y", (d, i) => {
+    //                         const angle = i * (360 / typeEmo.length); // 根据数据点数量动态计算角度
+    //                         return yScale(9) * Math.sin(angle * Math.PI / 180); // 设置文本的垂直位置
+    //                     })
+    //                     .style('text-anchor', 'middle') // 文本水平居中对齐
+    //                     .text(d => d)
+    // );
+
+   
+            // 添加文本到雷达图的每个角
             group.selectAll(".emoType")
                 .data(typeEmo)
                 .join("g")
                 .attr("class", "emoType")
-                // .attr("x",0)
-                // .attr("y",10 + xScale(valueScale(5*Math.ceil(maxValue/5))))
-                // .text(d=>d)
-                .style("transform", (d, i, arr) => `rotate(${i / arr.length * 360 - 1 / arr.length * 360}deg)`)
-                .call(
-                    g => g
-                        .append('text')
-                        .attr("x", d => { return -d.length / 2 * 7 })
-                        .attr("y", 10 + xScale(valueScale(5 * Math.ceil(maxValue / 5))))
-                        .style('transform', 'rotate(0,45,0)')
+                .call(g =>
+                    g.append('text')
+                        .attr("x", (d, i) => {
+                            const angle = i * (2 * Math.PI / typeEmo.length); // 根据数据点数量动态计算角度
+                            return xScale(9.5) * Math.cos(angle - Math.PI / 2); // 设置文本的水平位置
+                        })
+                        .attr("y", (d, i) => {
+                            const angle = i * (2 * Math.PI / typeEmo.length); // 根据数据点数量动态计算角度
+                            return yScale(9.5) * Math.sin(angle - Math.PI / 2); // 设置文本的垂直位置
+                        })
+                        .attr("dy", "0.25em")  // 垂直偏移量，用于微调文本位置
+                        .style('text-anchor', 'middle') // 文本水平居中对齐
                         .text(d => d)
+                );
 
-                )
+
+
+
+
+
+
+
+          
 
             group.selectAll(".level")
                 .data([1, 2, 3, 4, 5, 6])
@@ -241,8 +298,9 @@ export default {
                 .data(actor)
                 .join("text")
                 .attr("class", "label")
+                .attr("transform", "translate(0, 40)")
                 .attr("x", -1/2 * legendHeight)
-                .attr("y", (d, r) => 11 / 18 * legendHeight + r * 15)
+                .attr("y", (d, r) => 11 / 18 * legendHeight + r * 25)
                 .style("fill", 'black')
                 .text(d => d)
 
@@ -250,8 +308,9 @@ export default {
                 .data(actor)
                 .join("rect")
                 .attr("class", "icon")
+                .attr("transform", "translate(0, 40)")
                 .attr("x", -1/2 * legendHeight - 10)
-                .attr("y", (d, r) => 11 / 18 * legendHeight + r * 15 - 10)
+                .attr("y", (d, r) => 11 / 18 * legendHeight + r * 25 - 10)
                 .attr("width", 10)
                 .attr("height", 10)
                 .style("fill", (d, r) => colorScale(r))

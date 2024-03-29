@@ -3,7 +3,7 @@
         <div class="wall">
             <el-row :gutter="10">
                 <el-col :xl="100">
-                    <div class="grid-content head " style="background-color:#8da8c5 ;"></div>
+                    <div class="grid-content head main_sub_title" style="background-color:rgb(148, 178, 210) ;color: white;">Script Control</div>
                 </el-col>
             </el-row>
             <div class="wall grid-content interface-body">
@@ -48,7 +48,7 @@
                     <div class="brick optional ">
                         <el-row :gutter="10" class="czjz">
                             <el-col :span="5" :offset="2">
-                                <div class="sign">script</div>
+                                <div class="sign">Script</div>
                                 <!-- <div class="sign">剧本集</div> -->
                             </el-col>
                             <el-col :span="15">
@@ -75,7 +75,7 @@
                 <div class="pillar">
                     <div class="brick optional ">
                         <el-row :gutter="40" class="czjz">
-                            <el-col :span="6" :offset="8">
+                            <el-col :span="6" :offset="7">
                                 <button class="submit add czjz" @click="deal_actor">add</button>
                                 <!-- <button class="submit add czjz" @click="deal_actor">上传</button> -->
                             </el-col>
@@ -87,7 +87,7 @@
                 </div>
             </div>
         </div>
-        <div class="wall">
+        <!-- <div class="wall">
             <el-row :gutter="0" class="czjz">
                 <el-col :span="19" :offset="0">
                     <div class="candidate"></div>
@@ -95,11 +95,11 @@
                 <el-col :span="5">
                     <div class="checkPerson"></div>
                 </el-col></el-row>
-        </div>
+        </div> -->
         <div class="wall" style="height: 5%;">
             <div class="person-info perTab">
                 <!-- <el-button @click="dialogVisible = true" style="background-color: #d3dce6; border-color: #8da8c5;">章节人物映射关系</el-button> -->
-                <el-button @click="dialogVisible = true" style="background-color: #d3dce6; border-color: #8da8c5;">Mapping view</el-button>
+                <el-button @click="dialogVisible = true" style="background-color: #d3dce6; border-color: #8da8c5;margin-top:0px">Mapping View</el-button>
                 <el-dialog v-model="dialogVisible" title="章节人物分布预览图" width="70%" height="70%" :before-close="handleClose">
                     <distribute/>
                     <template #footer>
@@ -113,34 +113,34 @@
                 </el-dialog>
             </div>
         </div>
-        <div class="wall" style="height: 20%;"  >
+        <div class="wall" style="height: 25%;"  >
             <div id="emememe" class="perTab">
-                <!-- 生平介绍 <br/> -->
-                Biography <br/>
+                <!-- 生平介绍  -->
+               <h4> Biography</h4> 
                 {{ this.lifeList[this.roleName] }}
             </div>
         </div>
         <div class="wall " style="height: 25%;">
             <div class = "perTab">
                 <!-- 关系/社群视图 -->
-                Relationship/community view
+               <h4> Relationship/Community View</h4>
                 <RelationAct />
             </div>
         </div>
-        <div class="wall" style="height: 25%;">
+        <div class="wall" style="height: 30%;">
             <div class = "perTab">
                 <!-- 人物情感雷达图 -->
-                Character emotion radar chart
+                <h4>Character Emotion Radar Chart</h4>
                 <redaPic />
             </div>
         </div>
-        <div class="wall" style="height: 8%;">
+        <!-- <div class="wall" style="height: 10%;">
             <div class = "perTab copyright">
                 CopyRight 
                 <br/>
                 2023 @HeHongJie
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -227,6 +227,29 @@ export default {
 </script>
 
 <style>
+body{
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+h4{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.main_sub_title {
+    vertical-align: top;
+   width: 100%;
+    top: 0px;
+    height: 72px;
+    /* border: 2px solid white; */
+    border-right: none;
+    word-wrap: break-word;
+   
+        justify-content: center;
+        align-items: center;
+    font-size: 1.1em;
+    color:white;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
 #personAnalysisRounder {
     /* 居中 */
     margin: auto;
@@ -235,21 +258,24 @@ export default {
     height: 100%;
     display: flex;
     flex-direction: column;
-    border: solid skyblue 2px;
-    padding: 1px;
+    /* border: solid skyblue 2px; */
+    /* padding: 1px; */
     gap: 0px;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
-.head {
-    height: 75px;
-}
+
 
 .wall {
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* border: solid rgb(159, 137, 137) 1px; */
+    /* border-top: solid 0.5px rgb(137, 162, 231); */
+    /* border: solid 1px white; */
+    /* border-color: #8da8c5; */
+    /* border-color: rgb(211, 220, 230); */
     overflow: hidden;
+    
 }
 
 .person-info {
@@ -278,6 +304,7 @@ export default {
 
 .czjz {
     align-items: center;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
 
 }
 
@@ -309,10 +336,12 @@ export default {
 }
 
 .sign {
-    background: #9a9a9a;
+    /* background: #9a9a9a; */
     height: 18px;
     border-radius: 4px;
-    font-family: Georgia, 'Nimbus Roman No9 L', 'Century Schoolbook L', serif;
+    padding:2px;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+   
 }
 
 .candidate {
@@ -335,6 +364,7 @@ export default {
     background: #e9e9e9;
     height: 22px;
     border-radius: 2px;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
 
 }
 
@@ -363,7 +393,8 @@ export default {
 }
 
 .show {
-    background: #3595f9;
+    /* background: #3595f9; */
+    background-color: #94b2d2;
     border: none;
 }
 
@@ -371,9 +402,9 @@ export default {
     background: rebeccapurple;
 }
 
-/* .person-select{
-    
-} */
+.person-select{
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+}
 .el-select {
     display: block;
     background: #fdfdfd;
@@ -414,21 +445,25 @@ export default {
     text-align: center;
     /* overflow-y: scroll; */
     display: block;
-    font-size: 14pt;
-    padding: 10px;
+    
     overflow: hidden;
 }
 
 .perTab{
     /* box-shadow:  0 0  8px rgba(0, 0, 0, 0.2); */
-    box-shadow:  0 0  8px rgba(27, 75, 232, 0.826);
-    margin: 5px;
+    box-shadow:   0 0 8px rgba(27, 75, 232, 0.826);
+    border-top: solid 0.5px rgb(158, 179, 231);
+    /* margin: 10px; */
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    /* color:white; */
     width: calc(100% - 10px);
     height: calc(100% - 10px);
 }
 .copyright{
+    vertical-align:middle;
     text-justify: auto;
     font-size: 2em;
+    margin-top: 20px;
 }
 
 :deep(.el-dialog) {
