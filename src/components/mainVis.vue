@@ -1,17 +1,16 @@
 <template>
     <div class="tab" id="mainVis" style="width: 100%; height: 100%;">
         <div class="main_title" style="width: 100%; height: 5%; background-color: #94b2d2; ">
-            <div class="main_sub_title" style="width: 190px; left: 0px;border-right:5px solid white;border-left:8px solid white;">
-                <!-- <span>场景 <br> 视图</span> -->
+            <!-- <div class="main_sub_title" style="width: 190px; left: 0px;border-right:5px solid white;border-left:8px solid white;">
+              
                 <span style="margin-right: 10px;color: white;">Sence</span>
                 <span style="color: white;"> Merger </span>
             </div>
-            <!-- <div class="main_sub_title" style="width: 110px; "> <span> MERGER </span></div> -->
-            <!-- <div class="main_sub_title" style="width: 110px; "> <span> 归并 </span></div> -->
-            <div class="main_sub_title" style="width: 260px;color: whitesmoke;border-right:5px solid white;border-left:5px solid white;"><span style="color: white;">Person Drown</span> </div>
-            <!-- <div class="main_sub_title" style="width: 260px; "><span>人物具现</span> </div> -->
-            <div class="main_sub_title" style="width: 1436px;  border-right:5px solid white;border-left:5px solid white;color: white;"><span style="color: white;">Analysis Main Interface</span></div>
-            <div class="main_sub_title" style="width: 341px;border-left:5px solid white;"><span style="color: white;">Guidance and Script</span></div>
+            <div class="main_sub_title" style="width: 260px;color: whitesmoke;border-right:5px solid white;border-left:5px solid white;"><span style="color: white;">Person Drown</span> </div> -->
+            <div class="main_sub_title" style="width: 450px;border-right:1px solid white;border-left:2px solid white;"><span class="view_title">SCENE GROUP</span> </div>
+            <!-- <div class="main_sub_title" style="width: 1436px;  border-right:5px solid white;border-left:5px solid white;color: white;"><span class="view_title">Analysis Main Interface</span></div>
+            <div class="main_sub_title" style="width: 341px;border-left:5px solid white;"><span class="view_title">Guidance and Script</span></div> -->
+            <div class="main_sub_title" style="width: 1777px;border-left:1px solid white;"><span class="view_title">SCRIPT ANALYSIS</span></div>
         </div>
         <div style="width: 19.5%; height: 94.5%; float: left; box-shadow: 5px 0  8px 1px rgba(0, 0, 0, 0.2); margin: 5px;">
             <svg id="mainSvg" style="width: 100%; height: 100%; float: left;">

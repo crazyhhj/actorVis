@@ -3,51 +3,16 @@
         <div class="wall">
             <el-row :gutter="10">
                 <el-col :xl="100">
-                    <div class="grid-content head main_sub_title" style="background-color:rgb(148, 178, 210) ;color: white;">Script Control</div>
+                    <!-- <div class="grid-content head main_sub_title" style="background-color:rgb(148, 178, 210) ;color: white;">Script Control</div> -->
+                    <div class="grid-content head view_title main_sub_title" style="background-color:rgb(148, 178, 210) ;color: rgb(104, 92, 92);height: 73px;">SCRIPT CONTROL</div>
                 </el-col>
             </el-row>
             <div class="wall grid-content interface-body">
-                <div class="pillar">
+                   <!-- script -->
+                   <div class="pillar">
                     <div class="brick optional ">
                         <el-row :gutter="10" class="czjz">
-                            <el-col :span="5" :offset="2">
-                                <div class="sign">Person</div>
-                                <!-- <div class="sign">人物</div> -->
-                            </el-col>
-                            <el-col :span="15">
-                                <div class="person-content czjz">
-                                    <el-select v-model="roleName" placeholder="person" class="person-select" size="medium" >
-                                        <el-option v-for="item in personList" :key="item.value" :label="item.label"
-                                            :value="item.value" @click="showRole(item.value)">
-                                            {{ item.label }}
-                                        </el-option>
-                                    </el-select>
-
-                                </div>
-                            </el-col>
-                        </el-row>
-                    </div>
-                </div>
-                <div class="pillar">
-                    <div class="brick optional ">
-                        <el-row :gutter="10" class="czjz">
-                            <el-col :span="5" :offset="2">
-                                <div class="sign">Role</div>
-                                <!-- <div class="sign">章节</div> -->
-                            </el-col>
-                            <el-col :span="15">
-                                <div class="person-content">
-                                    <el-slider v-model="value_screen"  show-stops :max="127">
-                                    </el-slider>
-                                </div>
-                            </el-col>
-                        </el-row>
-                    </div>
-                </div>
-                <div class="pillar">
-                    <div class="brick optional ">
-                        <el-row :gutter="10" class="czjz">
-                            <el-col :span="5" :offset="2">
+                            <el-col :span="6" :offset="2">
                                 <div class="sign">Script</div>
                                 <!-- <div class="sign">剧本集</div> -->
                             </el-col>
@@ -72,15 +37,56 @@
                         </el-row>
                     </div> -->
                 </div>
+                <!-- role -->
+                <div class="pillar">
+                    <div class="brick optional ">
+                        <el-row :gutter="10" class="czjz">
+                            <el-col :span="6" :offset="2">
+                                <div class="sign">SrcPlay</div>
+                                <!-- <div class="sign">章节</div> -->
+                            </el-col>
+                            <el-col :span="15">
+                                <div class="person-content">
+                                    <el-slider v-model="value_screen"  show-stops :max="127">
+                                    </el-slider>
+                                </div>
+                            </el-col>
+                        </el-row>
+                    </div>
+                </div>
+                   <!-- person -->
+                   <div class="pillar">
+                    <div class="brick optional ">
+                        <el-row :gutter="10" class="czjz">
+                            <el-col :span="6" :offset="2">
+                                <div class="sign">Character</div>
+                                <!-- <div class="sign">人物</div> -->
+                            </el-col>
+                            <el-col :span="15">
+                                <div class="person-content czjz">
+                                    <el-select v-model="roleName" placeholder="person" class="person-select" size="medium" >
+                                        <el-option v-for="item in personList" :key="item.value" :label="item.label"
+                                            :value="item.value" @click="showRole(item.value)">
+                                            {{ item.label }}
+                                        </el-option>
+                                    </el-select>
+
+                                </div>
+                            </el-col>
+                        </el-row>
+                    </div>
+                </div>
+             
+                <!-- button -->
                 <div class="pillar">
                     <div class="brick optional ">
                         <el-row :gutter="40" class="czjz">
-                            <el-col :span="6" :offset="7">
-                                <button class="submit add czjz" @click="deal_actor">add</button>
+                            <el-col :span="6" :offset="8">
+                                <button class="submit add czjz" @click="deal_actor">Add</button>
                                 <!-- <button class="submit add czjz" @click="deal_actor">上传</button> -->
                             </el-col>
                             <el-col :span="8">
-                                <button class="submit show czjz" @click="submit">commit</button></el-col>
+                                <button class="submit show czjz" @click="submit">Submit</button></el-col>
                                 <!-- <button class="submit show czjz" @click="submit">确认修改</button></el-col> -->
                         </el-row>
                     </div>
@@ -96,7 +102,8 @@
                     <div class="checkPerson"></div>
                 </el-col></el-row>
         </div> -->
-        <div class="wall" style="height: 5%;">
+        <div class="wall" style="height: 10px;"></div>
+        <div class="wall" style="height: 6%;">
             <div class="person-info perTab">
                 <!-- <el-button @click="dialogVisible = true" style="background-color: #d3dce6; border-color: #8da8c5;">章节人物映射关系</el-button> -->
                 <el-button @click="dialogVisible = true" style="background-color: #d3dce6; border-color: #8da8c5;margin-top:0px">Mapping View</el-button>
@@ -123,14 +130,14 @@
         <div class="wall " style="height: 25%;">
             <div class = "perTab">
                 <!-- 关系/社群视图 -->
-               <h4> Relationship/Community View</h4>
+               <h4> Relationship</h4>
                 <RelationAct />
             </div>
         </div>
         <div class="wall" style="height: 30%;">
             <div class = "perTab">
                 <!-- 人物情感雷达图 -->
-                <h4>Character Emotion Radar Chart</h4>
+                <h4>Sentiment Radar</h4>
                 <redaPic />
             </div>
         </div>
@@ -161,7 +168,7 @@ export default {
             personList: [],
             options: [{
                 value: '选项1',
-                label: 'JOKER'
+                label: 'JOKER(1900)'
             }, {
                 value: '选项2',
                 label: 'PULP FICTION'
@@ -238,7 +245,7 @@ h4{
     vertical-align: top;
    width: 100%;
     top: 0px;
-    height: 72px;
+    /* height: 73px; */
     /* border: 2px solid white; */
     border-right: none;
     word-wrap: break-word;
@@ -246,7 +253,7 @@ h4{
         justify-content: center;
         align-items: center;
     font-size: 1.1em;
-    color:white;
+    
     font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
@@ -304,6 +311,8 @@ h4{
 
 .czjz {
     align-items: center;
+    text-align: center;
+    
     font-family: Avenir, Helvetica, Arial, sans-serif;
 
 }
@@ -331,7 +340,7 @@ h4{
 }
 
 .grid-content {
-    border-radius: 4px;
+    /* border-radius: 4px; */
     min-height: 48px;
 }
 
@@ -396,6 +405,7 @@ h4{
     /* background: #3595f9; */
     background-color: #94b2d2;
     border: none;
+    padding-left: 10px;
 }
 
 .show:hover {
@@ -451,7 +461,7 @@ h4{
 
 .perTab{
     /* box-shadow:  0 0  8px rgba(0, 0, 0, 0.2); */
-    box-shadow:   0 0 8px rgba(27, 75, 232, 0.826);
+    box-shadow:  0 0  8px rgba(27, 75, 232, 0.826);
     border-top: solid 0.5px rgb(158, 179, 231);
     /* margin: 10px; */
     font-family: Avenir, Helvetica, Arial, sans-serif;
