@@ -1,49 +1,68 @@
 <template>
-    <div style="width: 100%; padding-left: 50px;" class="top_nav_box">
+    <div style="width: 1787px; padding-left: 50px;" class="top_nav_box">
         <div>
             <el-slider v-model="showChapter1" :max="127" show-stops>
             </el-slider>
         </div>
-        <div style="border-left: gainsboro solid 4px;" class="button_box_nav">
-            <!-- <el-button @click="showRhythmLine" type="primary" plain>点击显示</el-button> -->
-            <el-button icon="el-icon-search" @click="showRhythmLine"  style="width:50%;">Show</el-button>
-            <el-button icon="el-icon-delete" @click="clear"  style="width:50%;margin-left: 0;">Clear</el-button>
+
+        <div class="button_sc">
+            <el-button @click="showRhythmLine" plain>Show</el-button>
+            <el-button @click="clear">Clear</el-button>
         </div>
+
+       <span> <h4>Script</h4></span>
+
+     
+      
     </div>
     <div class="container_rhythm">
         <div class="sub_container">
-            <div>
+            <div class="sub_chart" style="padding-bottom: 15px;">
                 <div class="chartContainer" ref="rhythmLineArea" id="ss"></div>
                 <div class="chartContainer" id="timerect" style="height:40px;"></div>
                 <div class="chartContainer" id="chainChart" style="height:200px;"></div>
             </div>
             <div class="chartContainer" style="height: 40px; padding-left: 50px; padding-right:50px;background-color: rgb(148, 178, 210);">
-                <span style="float: left; font-size: 1.1em; margin-left: 170px;margin-bottom: 10px;margin-top: 10px;color: white;">Performance Guidance {{ perGudType=='ty'?'Experientialist':perGudType=='ff'?'Methodologist':'Performance-oriented' }}</span>
-               <!-- <div class="Container" style="display:inline-block;border-right: 10px solid white;width: 757px;">  <span style="float: left; font-size: 1.1em; margin-left: 170px;margin-bottom: 10px;margin-top: 10px;color: white;">Performance Guidance {{ perGudType=='ty'?'Experientialist':perGudType=='ff'?'Methodologist':'Performance-oriented' }}</span></div> -->
-                <span style="float: right; font-size: 1.1em; margin-right:90px;margin-bottom: 10px;margin-top: 10px;color: white;"> Dialogue and Emotion</span>
-                <!-- <span style="float: right; font-size: 2em; margin-right: 120px;"> 对白与情感</span> -->
+                <!-- <span style="float: left; font-size: 1.1em; margin-left: 170px;margin-bottom: 10px;margin-top: 10px;color: white;">Performance Guidance {{ perGudType=='ty'?'Experientialist':perGudType=='ff'?'Methodologist':'Performance-oriented' }}</span>
+                <span style="float: right; font-size: 1.1em; margin-right:90px;margin-bottom: 10px;margin-top: 10px;color: white;"> Dialogue and Emotion</span> -->
+                <!-- <span class="view_title" style="float: left; font-size: 1.1em; margin-left: 170px;margin-bottom: 10px;margin-top: 10px;">Performance Guidance {{ perGudType=='ty'?'Experientialist':perGudType=='ff'?'Methodologist':'Performance-oriented' }}</span>
+                <span class="view_title"  style="float: right; font-size: 1.1em; margin-right:90px;margin-bottom: 10px;margin-top: 10px;"> Dialogue and Emotion</span> -->
+                <span class="view_title"  style="float: right; font-size: 1.1em; margin-right:403px;margin-bottom: 10px;margin-top: 10px;"> Acting Guidance</span>
+               
+               
 
             </div>
-            <div class="chartContainer" id="per_any" style="height:440px;width: 1427px; font-family: Avenir, Helvetica, Arial, sans-serif;overflow-y: auto;">
-                <div id="PerformanceGuidanceDetails" style="border-right: gainsboro solid 2px; font-family: Avenir, Helvetica, Arial, sans-serif;">
-
+            <div class="chartContainer" id="per_any" style="height:440px;width: 1427px; font-family: Avenir, Helvetica, Arial, sans-serif;">
+               <div class="chart_main">
+                <h4>Instruction</h4>
+                <div id="PerformanceGuidanceDetails" style="border-right: gainsboro solid 2px; font-family: Avenir, Helvetica, Arial, sans-serif;padding-bottom: 10px;">
+                    
                 </div>
-                <div id="emo_ring" style=" font-family: Avenir, Helvetica, Arial, sans-serif;overflow-x: hidden;height:100%;width: 100%; ">
+               </div>
+               <div class="chart_main">
+                <h4>Events</h4>
+                <div class="emo_main" style="overflow-y: auto; height: 400px;">
+                    <div id="emo_ring" style=" font-family: Avenir, Helvetica, Arial, sans-serif;overflow-x: hidden;width: 100%;height: 100%;">
+                    
                 </div>
+                </div>
+               </div>
             </div>
             <!-- <div class="chartContainer" id="chainChart" style="height:200px;">
                 {{ showtext }}</div> -->
 
         </div>
         <div class="sub_container" id="performance_methods" style="width: 360px; border-left: gainsboro solid 2px;">
-            <div class="script-h1" style="font-size: 1.1em;padding:10px 0;width: 355px;background-color: rgb(148, 178, 210);height: 40px;"> <span style="color:white">Script</span></div>
-            <div id="emo_line" style="height: 800px;width: 350px; border-color: #dcdcdc;border-bottom: gainsboro solid 2px;">
+            <!-- <div class="script-h1" style="display: inline-blockk;font-size: 1.1em;padding:10px 0;width: 355px;background-color: rgb(148, 178, 210);height: 40px;"> <span class="view_title" >Script</span></div> -->
+            <div id="emo_line" style="height: 840px;margin-bottom:15px; width: 350px; border-color: #dcdcdc;border-bottom: gainsboro solid 2px;">
                 <slideText/>
             </div>
+
             <!-- 下拉框 -->
-            <div class="script-h1" style="font-size: 1.1em;padding-top:10px;width: 355px;background-color: rgb(148, 178, 210);height: 40px;"> <span style="color:white">Guidance</span></div>
+            <div class="script-h1" style="font-size: 1.1em;padding-top:10px;width: 355px;background-color: rgb(148, 178, 210);height: 40px;"> <span class="view_title"></span></div>
+            <h4>Acting Style</h4>
             <!-- <h1>GUIDANCE</h1> -->
-            <el-select v-model="guidance" placeholder="GUIDANCE" class="select">
+            <el-select v-model="guidance" placeholder="acting style" class="select" style="margin-top: 5px;">
                     <el-option
                     v-for="item in options"
                     :key="item.value"
@@ -51,12 +70,12 @@
                     :value="item.value">
                     </el-option>
                 </el-select>
-                <el-card class="box-card" style="margin:0 30px 0 30px;height: 350px;"  @click="guide(this.content[0])">
-                    <div style="height: 130px;white-space:normal; word-break:break-all;overflow:hidden;line-height: 30px">{{ content[2] }}<br>{{ content[1] }}</div>
-                    <div v-show="this.content[0]" style="height: 270px;white-space:normal; word-break:break-all;overflow:hidden;line-height: 40px">
+                <el-card class="box-card" style="margin:15px 30px 0 30px;height: 300px;"  @click="guide(this.content[0])">
+                    <div style="height: 120px;white-space:normal; word-break:break-all;overflow:hidden;line-height: 30px">{{ content[2] }}<br>{{ content[1] }}</div>
+                    <div v-show="this.content[0]" style="height: 180px;white-space:normal; word-break:break-all;overflow:hidden;line-height: 40px">
                         <span>emotion</span><el-progress :percentage="this.percentage[0]" :stroke-width="20" :color="customColors[0].color"></el-progress>
                         <span>action</span><el-progress :percentage="this.percentage[1]" :stroke-width="20" :color="customColors[1].color"></el-progress>
-                        <span>interaction</span><el-progress :percentage="this.percentage[2]" :stroke-width="20" :color="customColors[2].color"></el-progress>
+                        <!-- <span>interaction</span><el-progress :percentage="this.percentage[2]" :stroke-width="20" :color="customColors[2].color"></el-progress> -->
                     </div>
                 </el-card>
             <!-- <span>emotion contrast</span> -->
@@ -86,8 +105,10 @@ export default {
         return {
             rhythmDetailData: this.$store.state.rhythmDetailData,
             index: 0,
+            count: 0,
             showtext: 'this is initValue',
             // showChapterList: this.$store.state.trendList,
+            
             showChapter1: 0,
             showChapter2: 0,
             // showChapter: 0,
@@ -134,11 +155,11 @@ export default {
 
         percentage(){
             if(this.guidance == 'Experiential'){
-                return [80,40,20];
+                return [90,10,20];
             }else if(this.guidance == 'Methodism'){
-                return [25,90,45];
+                return [10,90,45];
             }else if(this.guidance == 'Expressionism'){
-                return [56,30,88]
+                return [50,50,88]
             }else{
                 return [];
             }
@@ -177,6 +198,7 @@ export default {
             this.trendList = [];
         },
         showRhythmLine() {
+            
             const that = this;
             // var dom = this.$refs.rhythmLineArea;
             var dom = document.getElementById('ss');
@@ -440,6 +462,8 @@ export default {
                     })
                 );
                 myChart.on("click", params => {
+                    that.count++;
+                    console.log(that.count);
                     that.showChain();
                 })
             };
@@ -596,7 +620,9 @@ export default {
                         ]
                     })
                 );
-                myChart.on("click", params => {
+                myChart.on("click", (params) => {
+                    console.log(params);
+                    that.count++;
                     that.showChain();
                 })
             };
@@ -660,7 +686,17 @@ export default {
                 .attr('y', 0)
                 .style('fill', (d, r) => r % 2 == 0 ? '#8da8c5' : '#ffffff')
                 .style('opacity', 0.3)
-            const nameList = ['Joker', 'Adam', 'Social Worker', 'Sophie', 'Clerk', 'ALFRED', 'Mom', 'Bruce Wayne'];
+                let name1 = ['Joker', 'Adam', 'Worker', 'Sophie', 'Clerk', 'ALFRED', 'Mom', 'Wayne'];
+                let name2 = ['Max','Mia','Leo','Ava','Ben','Zoe','Sam','Lucy'];
+                let randomIndex = this.count%2;
+                let selectedArray;
+
+                if (randomIndex == 0) {
+                    selectedArray = name1;
+                } else {
+                    selectedArray = name2;
+                }
+            const nameList =selectedArray;
             // const nameList = ['WALL STREET #1', 'WALL STREET #2', 'WALL STREET #3', 'JOKER', 'YOUNG WOMEN'];
             chain_g.selectAll('text')
                 .data(nameList)
@@ -986,7 +1022,7 @@ export default {
 
 
             //创建坐标系
-            const width = 800, height = 400;
+            const width = 800, height = 380;
             const margin = {
                 bottom: 20,
                 top: 20,
@@ -1032,7 +1068,7 @@ export default {
                         .text(' Intensity/EMO')
             mainSvg_org.append('text')
                         .attr('x',720)
-                        .attr('y',380)
+                        .attr('y',355)
                         .style('font-size', '15px')
                         .text('Index/ACT')
             // const finalData = [dataRole]
@@ -1441,20 +1477,23 @@ body{
     display: grid;
     grid-template-columns: 4fr 1fr;
     /* 第一列宽度为9，第二列宽度为1 */
-    grid-gap: 10px;
+   
     /* 列之间的间隔 */
     /* width: 2000px; */
     width: 100%;
 }
 .top_nav_box{
     display: grid;
-    grid-template-columns: 80fr 21fr;
+    grid-template-columns: 80fr 21fr 25fr;
     /* 第一列宽度为9，第二列宽度为1 */
     grid-gap: 10px;
     /* 列之间的间隔 */
     /* width: 2000px; */
 }
-
+.button_sc{
+    padding: 5px 0;
+    height: 30px;
+}
 .chartContainer {
     /* width: 1500px; */
     width: 100%;

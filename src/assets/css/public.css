@@ -24,4 +24,9 @@ html {
   img {
     vertical-align: top;
   }
+
+  .view_title{
+    color: rgb(104, 92, 92);
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+  }
   
