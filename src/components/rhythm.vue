@@ -63,7 +63,7 @@
           
         </div>
     </div>
-    <!-- <div id="tooltip_g">{{ guide_text }}</div> -->
+    <div id="tooltip_g">{{ guide_text }}</div>
     <!-- <div id="heartLine" style="width: 100%; height: 100%;">
     </div> -->
 </template>
@@ -1137,13 +1137,13 @@ export default {
                
                 const triLineGen = d3.line()
                                     .curve(d3.curveCatmullRomClosed.alpha(0.5))
-                triData.forEach(item => {
-                    mainSvg.append('path')
-                        .attr("d", triLineGen(item))
-                        .attr("fill", 'none')
-                        .attr("stroke", "blue")
-                        .attr("stroke-width", 2);
-                })
+                // triData.forEach(item => {
+                //     mainSvg.append('path')
+                //         .attr("d", triLineGen(item))
+                //         .attr("fill", 'none')
+                //         .attr("stroke", "blue")
+                //         .attr("stroke-width", 2);
+                // })
 
                 mainSvg.append('g')
                     .append('path')
@@ -1511,7 +1511,7 @@ body{
 #tooltip_g {
       position: absolute;
       background-color: white;
-      /* border: 1px solid black; */
+      border: 1px solid black;
       border-radius: 5px;
       padding: 5px;
       display: none;
