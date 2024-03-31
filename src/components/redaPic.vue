@@ -1,8 +1,7 @@
 <template>
     <div id="actorEmoArea" style=" width: 100%; height: 100%;" >
     </div>
-    <!-- <button @click="drawRedaChart">获得雷达图</button> -->
-    <!-- <button @click="showD">显示数据</button> -->
+   
 </template>
 
 <script>
@@ -112,7 +111,7 @@ export default {
             const yScale = d3.scaleLinear().domain([-border, border]).range([-redaSize, redaSize])
             const colorScale = d3.scaleOrdinal([0, 1, 2, 3, 4, 5, 6], d3.schemeTableau10)
             // const 
-            // console.log(redaData);
+            console.log("leidadata",redaData);
 
             //builds out axes
             let axesData = new Array(5).fill(Math.ceil(maxValue / 5))
@@ -178,51 +177,7 @@ export default {
 
             
 
-//                 var textPoints = [];
-//                 var textRadius = redaSize + 20;
-//                 for(var i=0;i<6;i++) {
-//                     var x = textRadius * Math.sin(i * 60),
-//                             y = textRadius * Math.cos(i * 60);
-//                     textPoints.push({
-//                         x: x,
-//                         y: y
-//                     });
 
-//                     group.selectAll(".emoType")
-//                     .data(textPoints)
-//                     .join("g")
-//                     .attr("class", "emoType")
-//                     .enter()
-//                     .append('text')
-//                     .attr('x', function(d) {
-//                         return d.x;
-//                     })
-//                     .attr('y', function(d) {
-//                         return d.y;
-//                     })
-//                     .text(function(d,i) {
-//                         return typeEmo[i];
-//                     });  
-                
-// }  
-    //             group.selectAll(".emoType")
-    //             .data(typeEmo)
-    //             .join("g")
-    //             .attr("class", "emoType")
-                
-    //             .call(g =>
-    //                 g.append('text')
-    //                     .attr("x", (d, i) => {
-    //                         const angle = i * (360 / typeEmo.length); // 根据数据点数量动态计算角度
-    //                         return xScale(9) * Math.cos(angle * Math.PI / 180); // 设置文本的水平位置
-    //                     })
-    //                     .attr("y", (d, i) => {
-    //                         const angle = i * (360 / typeEmo.length); // 根据数据点数量动态计算角度
-    //                         return yScale(9) * Math.sin(angle * Math.PI / 180); // 设置文本的垂直位置
-    //                     })
-    //                     .style('text-anchor', 'middle') // 文本水平居中对齐
-    //                     .text(d => d)
-    // );
 
    
             // 添加文本到雷达图的每个角
@@ -234,11 +189,11 @@ export default {
                     g.append('text')
                         .attr("x", (d, i) => {
                             const angle = i * (2 * Math.PI / typeEmo.length); // 根据数据点数量动态计算角度
-                            return xScale(9.5) * Math.cos(angle - Math.PI / 2); // 设置文本的水平位置
+                            return 140 * Math.cos(angle - Math.PI / 2); // 设置文本的水平位置
                         })
                         .attr("y", (d, i) => {
                             const angle = i * (2 * Math.PI / typeEmo.length); // 根据数据点数量动态计算角度
-                            return yScale(9.5) * Math.sin(angle - Math.PI / 2); // 设置文本的垂直位置
+                            return 140 * Math.sin(angle - Math.PI / 2); // 设置文本的垂直位置
                         })
                         .attr("dy", "0.25em")  // 垂直偏移量，用于微调文本位置
                         .style('text-anchor', 'middle') // 文本水平居中对齐
@@ -298,9 +253,9 @@ export default {
                 .data(actor)
                 .join("text")
                 .attr("class", "label")
-                .attr("transform", "translate(0, 30)")
+                .attr("transform", "translate(0, 28)")
                 .attr("x", -1/2 * legendHeight)
-                .attr("y", (d, r) => 11 / 18 * legendHeight + r * 22)
+                .attr("y", (d, r) => 11 / 18 * legendHeight + r * 18)
                 .style("fill", 'black')
                 .text(d => d)
 
@@ -308,17 +263,42 @@ export default {
                 .data(actor)
                 .join("rect")
                 .attr("class", "icon")
-                .attr("transform", "translate(0, 30)")
+                .attr("transform", "translate(0, 28)")
                 .attr("x", -1/2 * legendHeight - 10)
-                .attr("y", (d, r) => 11 / 18 * legendHeight + r * 22 - 10)
+                .attr("y", (d, r) => 11 / 18 * legendHeight + r * 18 - 10)
                 .attr("width", 10)
                 .attr("height", 10)
                 .style("fill", (d, r) => colorScale(r))
                 .text(d => d)
 
             
-            // d3.select('svg').attr('transform', "translate(0,40)")
-            // d3.select('svg').attr('transform', "rotate(-100,-200)")
+            // 为图例矩形添加点击事件监听器
+            actorGroup.selectAll('.icon')
+            .on('click', function(d, i) {
+                console.log(i,d)
+                // 获取点击的图例索引
+                const legendIndex = i;
+                
+                
+                
+                // 根据雷达图数据，判断是否已经显示
+                const isDisplayed = true;
+
+                // 根据需要，显示或隐藏雷达图数据
+                if (isDisplayed) {
+                    // 如果已经显示，则隐藏
+                    d3.selectAll('.redaArea').filter((d, j) => {j === legendIndex;
+                    console.log(d,j)})
+                        .style('opacity', 0);
+                    d3.select(this).classed('displayed', false);
+                } else {
+                    // 如果未显示，则显示
+                    d3.selectAll('.redaArea').filter((d, j) => j === legendIndex)
+                        .style('opacity', 1);
+                    d3.select(this).classed('displayed', true);
+                }
+            });
+
 
         },
         showD() {
