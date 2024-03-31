@@ -103,9 +103,10 @@
                 </el-col></el-row>
         </div> -->
         <div class="wall" style="height: 10px;"></div>
-        <div class="wall" style="height: 6%;">
+        <!-- mapping view -->
+        <!-- <div class="wall" style="height: 6%;">
             <div class="person-info perTab">
-                <!-- <el-button @click="dialogVisible = true" style="background-color: #d3dce6; border-color: #8da8c5;">章节人物映射关系</el-button> -->
+               
                 <el-button @click="dialogVisible = true" style="background-color: #d3dce6; border-color: #8da8c5;margin-top:0px">Mapping View</el-button>
                 <el-dialog v-model="dialogVisible" title="章节人物分布预览图" width="70%" height="70%" :before-close="handleClose">
                     <distribute/>
@@ -119,7 +120,7 @@
                     </template>
                 </el-dialog>
             </div>
-        </div>
+        </div> -->
         <div class="wall" style="height: 25%;"  >
             <div id="emememe" class="perTab">
                 <!-- 生平介绍  -->
@@ -134,7 +135,7 @@
                 <RelationAct />
             </div>
         </div>
-        <div class="wall" style="height: 30%;">
+        <div class="wall" style="height: 35%;">
             <div class = "perTab">
                 <!-- 人物情感雷达图 -->
                 <h4>Sentiment Radar</h4>

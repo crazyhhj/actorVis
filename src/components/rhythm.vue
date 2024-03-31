@@ -85,9 +85,9 @@
                 <div v-show="this.content[0]"
                     style="height: 180px;white-space:normal; word-break:break-all;overflow:hidden;line-height: 40px">
                     <span>emotion</span><el-progress :percentage="this.percentage[0]" :stroke-width="20"
-                        :color="customColors[0].color"></el-progress>
+                        :color="this.customColors[0].color"></el-progress>
                     <span>action</span><el-progress :percentage="this.percentage[1]" :stroke-width="20"
-                        :color="customColors[1].color"></el-progress>
+                        :color="this.customColors[1].color"></el-progress>
                     <!-- <span>interaction</span><el-progress :percentage="this.percentage[2]" :stroke-width="20" :color="customColors[2].color"></el-progress> -->
                 </div>
             </el-card>
@@ -142,8 +142,8 @@ export default {
             guidance: '',
             customColors: [
 
-                { color: '#5cb87a', percentage: 60 },
-                { color: '#1989fa', percentage: 80 },
+                { color: 'rgb(25, 137, 250)', percentage: 60 },
+                { color: 'rgb(25, 137, 250)', percentage: 80 },
                 { color: '#e6a23c', percentage: 40 },
 
 
@@ -739,7 +739,7 @@ export default {
                 .style('fill', (d, r) => r % 2 == 0 ? '#8da8c5' : '#ffffff')
                 .style('opacity', 0.3)
             let name1 = ['Joker', 'Adam', 'Worker', 'Sophie', 'Clerk', 'ALFRED', 'Mom', 'Wayne'];
-            let name2 = ['Joker', 'Street #1', 'Street #2', 'Street #3', 'Women',  'Bobby', 'Hoyt', 'Corpse'];
+            let name2 = ['Joker', 'wall #1', 'wall #2', 'wall #3', 'Women',  'Bobby', 'Hoyt', 'Corpse'];
             let randomIndex = this.count % 2;
             let selectedArray;
 
@@ -1122,7 +1122,7 @@ export default {
                 .attr('x', 720)
                 .attr('y', 355)
                 .style('font-size', '15px')
-                .text('Index/ACT')
+                .text('Events')
             // const finalData = [dataRole]
             // console.log(finalData);
             const mainSvg = mainSvg_org.append("g")
@@ -1418,11 +1418,11 @@ export default {
                     .attr("class", "dialogueActor")
                     .text(d);
                 let emoRing = div.append("div").attr("class", "emoRing");
-                that.emoRingDraw(emoRing);
+                that.emoRingDraw(emoRing,idx);
                 // console.log(d, idx, div);
             });
         },
-        emoRingDraw(div) {
+        emoRingDraw(div,idx) {
             div.selectAll("svg").remove();
             let srcHeight = 70;
             let srcWidth = 70;
@@ -1504,15 +1504,27 @@ export default {
             srcRegion.attr("transform", `translate(${(srcWidth / 2)},${(srcHeight / 2)})`);
             // circle in core
             const coreCir = srcRegion.append('g').attr('id', "coreCir");
+            const emonumber = [2,3,4,9,11];
+            const emocircle = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
             d3.quadtree();
+            let emoHidden = [1,3,5,7]
             coreCir.selectAll("#coreCir circle")
-                .data(emo)
+                .data([emo])
                 .join("circle")
                 .attr("cx", 0)
                 .attr("cy", 0)
                 .attr("r", innerRadius - 1)
-                .attr("fill", d => "#" + Math.floor((d * 16777215)).toString(16))
-                .style("opacity", 0.3);
+               // .attr("fill", d => "#" + Math.floor((d * 16777215)).toString(16))#b3cbef
+                .attr("fill", (d,r)=>{
+                    return emoHidden.includes(idx)?"#b3cbef": `#${Math.floor((d * 16777215)).toString(16)}`
+                })
+                .style("opacity", (d,r)=>{
+                    return emoHidden.includes(idx)?"1": `0.3`
+                })
+
+           
+
+
         }
     }
 }
