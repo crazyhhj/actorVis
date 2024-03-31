@@ -168,7 +168,7 @@ export default {
             personList: [],
             options: [{
                 value: '选项1',
-                label: 'JOKER(1900)'
+                label: 'JOKER(2019)'
             }, {
                 value: '选项2',
                 label: 'PULP FICTION'

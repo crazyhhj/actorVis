@@ -7,7 +7,7 @@
                 <span style="color: white;"> Merger </span>
             </div>
             <div class="main_sub_title" style="width: 260px;color: whitesmoke;border-right:5px solid white;border-left:5px solid white;"><span style="color: white;">Person Drown</span> </div> -->
-            <div class="main_sub_title" style="width: 450px;border-right:1px solid white;border-left:2px solid white;"><span class="view_title">SCENE GROUP</span> </div>
+            <div class="main_sub_title" style="width: 450px;border-right:1px solid white;border-left:2px solid white;"><span class="view_title">SCREENPLAY GROUP</span> </div>
             <!-- <div class="main_sub_title" style="width: 1436px;  border-right:5px solid white;border-left:5px solid white;color: white;"><span class="view_title">Analysis Main Interface</span></div>
             <div class="main_sub_title" style="width: 341px;border-left:5px solid white;"><span class="view_title">Guidance and Script</span></div> -->
             <div class="main_sub_title" style="width: 1777px;border-left:1px solid white;"><span class="view_title">SCRIPT ANALYSIS</span></div>

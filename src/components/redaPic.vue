@@ -294,6 +294,9 @@ export default {
 
             //图例
             const legendHeight = 200;
+
+            const tickPath = "M10,35 L30,55 L70,15";
+            let count_ci = false
             actorGroup.selectAll(".label")
                 .data(actor)
                 .join("text")

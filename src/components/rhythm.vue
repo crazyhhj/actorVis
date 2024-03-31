@@ -10,43 +10,52 @@
             <el-button @click="clear">Clear</el-button>
         </div>
 
-       <span> <h4>Script</h4></span>
+        <span>
+            <h4>Script</h4>
+        </span>
 
-     
-      
+
+
     </div>
     <div class="container_rhythm">
         <div class="sub_container">
             <div class="sub_chart" style="padding-bottom: 15px;">
                 <div class="chartContainer" ref="rhythmLineArea" id="ss"></div>
+                <div id="vertical-line" style="display: none;"></div>
                 <div class="chartContainer" id="timerect" style="height:40px;"></div>
                 <div class="chartContainer" id="chainChart" style="height:200px;"></div>
             </div>
-            <div class="chartContainer" style="height: 40px; padding-left: 50px; padding-right:50px;background-color: rgb(148, 178, 210);">
+            <div class="chartContainer"
+                style="height: 40px; padding-left: 50px; padding-right:50px;background-color: rgb(148, 178, 210);">
                 <!-- <span style="float: left; font-size: 1.1em; margin-left: 170px;margin-bottom: 10px;margin-top: 10px;color: white;">Performance Guidance {{ perGudType=='ty'?'Experientialist':perGudType=='ff'?'Methodologist':'Performance-oriented' }}</span>
                 <span style="float: right; font-size: 1.1em; margin-right:90px;margin-bottom: 10px;margin-top: 10px;color: white;"> Dialogue and Emotion</span> -->
                 <!-- <span class="view_title" style="float: left; font-size: 1.1em; margin-left: 170px;margin-bottom: 10px;margin-top: 10px;">Performance Guidance {{ perGudType=='ty'?'Experientialist':perGudType=='ff'?'Methodologist':'Performance-oriented' }}</span>
                 <span class="view_title"  style="float: right; font-size: 1.1em; margin-right:90px;margin-bottom: 10px;margin-top: 10px;"> Dialogue and Emotion</span> -->
-                <span class="view_title"  style="float: right; font-size: 1.1em; margin-right:403px;margin-bottom: 10px;margin-top: 10px;"> Acting Guidance</span>
-               
-               
+                <span class="view_title"
+                    style="float: right; font-size: 1.1em; margin-right:403px;margin-bottom: 10px;margin-top: 10px;">
+                    ACTING GUIDANCE</span>
+
+
 
             </div>
-            <div class="chartContainer" id="per_any" style="height:440px;width: 1427px; font-family: Avenir, Helvetica, Arial, sans-serif;">
-               <div class="chart_main">
-                <h4>Instruction</h4>
-                <div id="PerformanceGuidanceDetails" style="border-right: gainsboro solid 2px; font-family: Avenir, Helvetica, Arial, sans-serif;padding-bottom: 10px;">
-                    
+            <div class="chartContainer" id="per_any"
+                style="height:440px;width: 1427px; font-family: Avenir, Helvetica, Arial, sans-serif;">
+                <div class="chart_main">
+                    <h4>Instruction</h4>
+                    <div id="PerformanceGuidanceDetails"
+                        style="border-right: gainsboro solid 2px; font-family: Avenir, Helvetica, Arial, sans-serif;padding-bottom: 10px;">
+
+                    </div>
                 </div>
-               </div>
-               <div class="chart_main">
-                <h4>Events</h4>
-                <div class="emo_main" style="overflow-y: auto; height: 400px;">
-                    <div id="emo_ring" style=" font-family: Avenir, Helvetica, Arial, sans-serif;overflow-x: hidden;width: 100%;height: 100%;">
-                    
+                <div class="chart_main">
+                    <h4>Events</h4>
+                    <div class="emo_main" style="overflow-y: auto; height: 400px;">
+                        <div id="emo_ring"
+                            style=" font-family: Avenir, Helvetica, Arial, sans-serif;overflow-x: hidden;width: 100%;height: 100%;">
+
+                        </div>
+                    </div>
                 </div>
-                </div>
-               </div>
             </div>
             <!-- <div class="chartContainer" id="chainChart" style="height:200px;">
                 {{ showtext }}</div> -->
@@ -54,32 +63,36 @@
         </div>
         <div class="sub_container" id="performance_methods" style="width: 360px; border-left: gainsboro solid 2px;">
             <!-- <div class="script-h1" style="display: inline-blockk;font-size: 1.1em;padding:10px 0;width: 355px;background-color: rgb(148, 178, 210);height: 40px;"> <span class="view_title" >Script</span></div> -->
-            <div id="emo_line" style="height: 840px;margin-bottom:15px; width: 350px; border-color: #dcdcdc;border-bottom: gainsboro solid 2px;">
-                <slideText/>
+            <div id="emo_line"
+                style="height: 840px;margin-bottom:15px; width: 350px; border-color: #dcdcdc;border-bottom: gainsboro solid 2px;">
+                <slideText />
             </div>
 
             <!-- 下拉框 -->
-            <div class="script-h1" style="font-size: 1.1em;padding-top:10px;width: 355px;background-color: rgb(148, 178, 210);height: 40px;"> <span class="view_title"></span></div>
+            <div class="script-h1"
+                style="font-size: 1.1em;padding-top:10px;width: 355px;background-color: rgb(148, 178, 210);height: 40px;">
+                <span class="view_title"></span>
+            </div>
             <h4>Acting Style</h4>
             <!-- <h1>GUIDANCE</h1> -->
             <el-select v-model="guidance" placeholder="acting style" class="select" style="margin-top: 5px;">
-                    <el-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value">
-                    </el-option>
-                </el-select>
-                <el-card class="box-card" style="margin:15px 30px 0 30px;height: 300px;"  @click="guide(this.content[0])">
-                    <div style="height: 120px;white-space:normal; word-break:break-all;overflow:hidden;line-height: 30px">{{ content[2] }}<br>{{ content[1] }}</div>
-                    <div v-show="this.content[0]" style="height: 180px;white-space:normal; word-break:break-all;overflow:hidden;line-height: 40px">
-                        <span>emotion</span><el-progress :percentage="this.percentage[0]" :stroke-width="20" :color="customColors[0].color"></el-progress>
-                        <span>action</span><el-progress :percentage="this.percentage[1]" :stroke-width="20" :color="customColors[1].color"></el-progress>
-                        <!-- <span>interaction</span><el-progress :percentage="this.percentage[2]" :stroke-width="20" :color="customColors[2].color"></el-progress> -->
-                    </div>
-                </el-card>
+                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                </el-option>
+            </el-select>
+            <el-card class="box-card" style="margin:15px 30px 0 30px;height: 300px;" @click="guide(this.content[0])">
+                <div style="height: 120px;white-space:normal; word-break:break-all;overflow:hidden;line-height: 30px">{{
+                content[2] }}<br>{{ content[1] }}</div>
+                <div v-show="this.content[0]"
+                    style="height: 180px;white-space:normal; word-break:break-all;overflow:hidden;line-height: 40px">
+                    <span>emotion</span><el-progress :percentage="this.percentage[0]" :stroke-width="20"
+                        :color="customColors[0].color"></el-progress>
+                    <span>action</span><el-progress :percentage="this.percentage[1]" :stroke-width="20"
+                        :color="customColors[1].color"></el-progress>
+                    <!-- <span>interaction</span><el-progress :percentage="this.percentage[2]" :stroke-width="20" :color="customColors[2].color"></el-progress> -->
+                </div>
+            </el-card>
             <!-- <span>emotion contrast</span> -->
-          
+
         </div>
     </div>
     <div id="tooltip_g">{{ guide_text }}</div>
@@ -108,59 +121,59 @@ export default {
             count: 0,
             showtext: 'this is initValue',
             // showChapterList: this.$store.state.trendList,
-            
+
             showChapter1: 0,
             showChapter2: 0,
             // showChapter: 0,
             screen_num: this.$store.state.slugIndexList,
-            trendList:[],
+            trendList: [],
             perGudType: '',
-            guide_text:'指导',
+            guide_text: '指导',
             options: [{
-          value: 'Experiential',
-          label: 'Experiential'
-        }, {
-          value: 'Methodism',
-          label: 'Methodism'
-        }, {
-          value: 'Expressionism',
-          label: 'Expressionism'
-        }],
-        guidance: '',
-        customColors: [
-          
-          {color: '#5cb87a', percentage: 60},
-          {color: '#1989fa', percentage: 80},
-          {color: '#e6a23c', percentage: 40},
-         
-         
-        ]
+                value: 'Experiential',
+                label: 'Experiential'
+            }, {
+                value: 'Methodism',
+                label: 'Methodism'
+            }, {
+                value: 'Expressionism',
+                label: 'Expressionism'
+            }],
+            guidance: '',
+            customColors: [
+
+                { color: '#5cb87a', percentage: 60 },
+                { color: '#1989fa', percentage: 80 },
+                { color: '#e6a23c', percentage: 40 },
+
+
+            ]
 
         }
     },
     mounted() {
     },
     computed: {
-        content(){
-            if(this.guidance == 'Experiential'){
-                return [ 'ty','Stanislavski,Tease the heart of the show','Experiential'];
-            }else if(this.guidance == 'Methodism'){
-                return ['ff',`is the development of 'the system 'Is to use specific methods to solve the problem`,'Methodism'];
-            }else if(this.guidance == 'Expressionism'){
-                return ['bx','simply means being able to convey emotions effectively.','Expressionism']
-            }else{
+        content() {
+            if (this.guidance == 'Experiential') {
+                return ['ty', 'Stanislavski,Tease the heart of the show', 'Experiential'];
+            } else if (this.guidance == 'Methodism') {
+                return ['ff', `is the development of 'the system 'Is to use specific methods to solve the problem`, 'Methodism'];
+            } else if (this.guidance == 'Expressionism') {
+                return ['bx', 'simply means being able to convey emotions effectively.', 'Expressionism']
+            } else {
                 return [];
             }
         },
 
-        percentage(){
-            if(this.guidance == 'Experiential'){
-                return [90,10,20];
-            }else if(this.guidance == 'Methodism'){
-                return [10,90,45];
-            }else if(this.guidance == 'Expressionism'){
-                return [50,50,88]
-            }else{
+        percentage() {
+            if (this.guidance == 'Experiential') {
+                return [90, 10, 20];
+            } else if (this.guidance == 'Methodism') {
+                return [10, 90, 45];
+            } else if (this.guidance == 'Expressionism') {
+                return [50, 50, 88]
+            } else {
                 return [];
             }
         }
@@ -180,10 +193,10 @@ export default {
             handler: function (showChapter1) {
                 this.$store.commit('sendIndexToRelation', showChapter1);
                 // this.lineH(showChapter1);
-                const init  = this.$store.state.initTrendList;
+                const init = this.$store.state.initTrendList;
                 const that = this;
-                for(let i of init){
-                    if(i.includes(showChapter1)){
+                for (let i of init) {
+                    if (i.includes(showChapter1)) {
                         that.trendList = i
                         that.showRhythmLine();
                     }
@@ -198,7 +211,7 @@ export default {
             this.trendList = [];
         },
         showRhythmLine() {
-            
+
             const that = this;
             // var dom = this.$refs.rhythmLineArea;
             var dom = document.getElementById('ss');
@@ -222,10 +235,10 @@ export default {
                 fakeData.push(data);
             }
             const quickLookData = this.$store.getters.getScheduling;
-            let charD = quickLookData.map(d=>d.screen.length>0)
-            let charE=[]
-            for(let i in charD){
-                charD[i]&&charE.push(i)
+            let charD = quickLookData.map(d => d.screen.length > 0)
+            let charE = []
+            for (let i in charD) {
+                charD[i] && charE.push(i)
             }
             // const data = this.rhythmDetailData[index];
             const dataOrg = this.$store.state.rhythmDetailData;
@@ -241,8 +254,8 @@ export default {
                 d.idx = idx;
             })
             let shadowArea = []
-            for(let i in data){
-                if(data[i]['charpterIndex']==this.showChapter1){
+            for (let i in data) {
+                if (data[i]['charpterIndex'] == this.showChapter1) {
                     shadowArea.push(i)
                 }
             }
@@ -302,11 +315,11 @@ export default {
 
                                     'Chapter importance score: ' + (params[2].value - base).toFixed(1) + '<br />' +
                                     'emotional intensity: -' + `${((params[2].value - base).toFixed(1) - params[1].value.toFixed(0)).toFixed(0)}` + '<br />' +
-                                    'Event density: +' + `${(params[2].value.toFixed(0) - params[0].value.toFixed(0)).toFixed(0)}`  + '<br />' 
+                                    'Event density: +' + `${(params[2].value.toFixed(0) - params[0].value.toFixed(0)).toFixed(0)}` + '<br />'
                                     // +'Summarize: ' + `In Gotham Square, the traffic is heavy and the crowds are bustling. The clown wears a sad clown<br />
                                     // Clothes, street stalls, attracting customers. There was an old man with him<br />
                                     // Play the piano. Most people ignored him, but a group of young people started laughing at him.`
-                                    +'Summarize:'+`In the subway scene, a tense confrontation breaks<br /> out between the Joker (Arthur Fleck) and three Wall Streeters<br />
+                                    + 'Summarize:' + `In the subway scene, a tense confrontation breaks<br /> out between the Joker (Arthur Fleck) and three Wall Streeters<br />
                                     People on Wall Street began to viciously harass young women on the<br /> subway, and one even tried to offer her food and insult her，<br />
                                     When people on Wall Street start singing and making fun of the clown,<br /> he feels humiliated and angry, but still tries to stay calm. however，<br />
                                     As the situation deteriorates and the attacks on him intensify,<br /> the Joker's emotions spiral out of control, eventually leading to an outburst of violence<br />
@@ -327,7 +340,7 @@ export default {
                                 return item.start;
                                 // return item.id;
                             }),
-                            show:false,
+                            show: false,
                             axisLabel: {
                                 formatter: function (value, idx) {
                                     // return data[value].screen
@@ -461,10 +474,19 @@ export default {
                         ]
                     })
                 );
+                let xx = 0
                 myChart.on("click", params => {
                     that.count++;
                     console.log(that.count);
                     that.showChain();
+
+                    xx==params.event.offsetX?(verticalLine.style.display = 'none'): xx = params.event.offsetX;
+                    var verticalLine = document.getElementById('vertical-line');
+
+                    verticalLine.style.left = 743 + xx +'px';
+
+                    // 显示红线
+                    verticalLine.style.display = 'block';
                 })
             };
             function doChartTwo(data) {
@@ -500,15 +522,15 @@ export default {
                                 }
                                 return (
                                     // data[params[2].name].screen +
-                                    'There were only clowns and a young woman (in her 30s)<br /> in the subway car, <br /> The woman was reading at the <br />far end of the car.'+
+                                    'There were only clowns and a young woman (in her 30s)<br /> in the subway car, <br /> The woman was reading at the <br />far end of the car.' +
                                     '<br />' +
                                     // 'content: ' + params[0].value.toFixed(1) + '<br />' +
                                     // 'emotion: ' + params[1].value.toFixed(1) + '<br />' +
                                     // 'event: ' + params[2].value.toFixed(1) + '<br />' +
                                     // ().toFixed(1) +
                                     // '%'+
-                                    'Importance score: '+ `${(params[2].value - base).toFixed(1)}`+'<br />'
-                                        
+                                    'Importance score: ' + `${(params[2].value - base).toFixed(1)}` + '<br />'
+
                                 );
                             }
                         },
@@ -525,7 +547,7 @@ export default {
                                 return item.start;
                                 // return item.id;
                             }),
-                            show:false,
+                            show: false,
                             axisLabel: {
                                 formatter: function (value, idx) {
                                     // return data[value].screen
@@ -600,20 +622,20 @@ export default {
                                         opacity: '0.2'
                                     },
                                     data: [
-                                            [
-                                                {
-                                                    name: 'Current Chapter',
-                                                    // xAxis: `${shadowArea[0]}`
-                                                    xAxis: '79'
-                                                },
-                                                {
-                                                    xAxis: '421'
-                                                }
-                                            ]
-                                        
+                                        [
+                                            {
+                                                name: 'Current Chapter',
+                                                // xAxis: `${shadowArea[0]}`
+                                                xAxis: '79'
+                                            },
+                                            {
+                                                xAxis: '421'
+                                            }
+                                        ]
+
 
                                     ],
-                                    
+
                                 }
 
                             }
@@ -624,27 +646,43 @@ export default {
                     console.log(params);
                     that.count++;
                     that.showChain();
+
+                    var xValue = params.value[0];
+                    myChart.setOption({
+                        series: [{
+                            markLine: {
+                                data: [{
+                                    xAxis: 800,  // 横坐标值
+                                    lineStyle: {
+                                        color: 'red'  // 线条颜色
+                                    }
+                                }]
+                            }
+                        }]
+                    });
                 })
             };
             console.log(data)
             showList.length == 0 ? doChart(quickLookData) : doChartTwo(data);
 
+            let ys = [4, 6, 7, 8, 9, 12, 14, 15, 21, 23, 24, 25, 31, 35, 36, 37, 40, 42, 43, 45, 46, 47, 48, 49, 50, 51, 52, 53, 56, 61, 62, 64, 71, 74, 77, 81, 83, 84, 86, 88, 90, 106, 109, 111, 113, 114, 116, 117, 119,127]
+
             //场景序号
-            function drawTick(){
+            function drawTick() {
                 d3.select('#tempTick').remove()
                 var xScale = d3.scaleLinear()
                     .domain([0, charD.length])
                     .range([0, 1290]);
 
                 var xAxis = d3.axisBottom(xScale)
-                                .tickValues(charE)
-                                .tickFormat((d,r)=>(r)%5==0?r==0?r:r+1:'')
+                    .tickValues(charE)
+                    .tickFormat((d, r) => (r) % 5 == 0 ? r == 0 ? r : r + 1 : '')
                 // 绘制 x 轴并设置其位置
-                const svg = d3.select('#timerect').append("svg").attr("width",1400).attr("height",50).attr("id", 'tempTick')
+                const svg = d3.select('#timerect').append("svg").attr("width", 1400).attr("height", 50).attr("id", 'tempTick')
                 svg.append("g")
                     .attr("class", "x axis")
                     .call(xAxis)
-                    .attr("transform", "translate(30,0)")   
+                    .attr("transform", "translate(30,0)")
                 // 添加刻度标签和样式
                 svg.selectAll(".tick text")
                     .attr("dy", "1.5em")
@@ -653,6 +691,17 @@ export default {
                     .style("text-anchor", "start");
                 svg
                     .attr("transform", "translate(38,-25)")
+                svg.selectAll('hight_dot')
+                    .data(ys)
+                    .join('rect')
+                    .attr('width', 10)
+                    .attr('height', 3)
+                    .attr('x', d => {
+                        // console.log(d,1290/127);
+                        return 30 + d * (1290 / 127)
+                    })
+                    .attr('y', 0)
+                    .attr('fill', '#FFD700')
 
             }
             drawTick()
@@ -686,17 +735,17 @@ export default {
                 .attr('y', 0)
                 .style('fill', (d, r) => r % 2 == 0 ? '#8da8c5' : '#ffffff')
                 .style('opacity', 0.3)
-                let name1 = ['Joker', 'Adam', 'Worker', 'Sophie', 'Clerk', 'ALFRED', 'Mom', 'Wayne'];
-                let name2 = ['Max','Mia','Leo','Ava','Ben','Zoe','Sam','Lucy'];
-                let randomIndex = this.count%2;
-                let selectedArray;
+            let name1 = ['Joker', 'Adam', 'Worker', 'Sophie', 'Clerk', 'ALFRED', 'Mom', 'Wayne'];
+            let name2 = ['Joker', 'Street #1', 'Street #2', 'Street #3', 'Women',  'Bobby', 'Hoyt', 'Corpse'];
+            let randomIndex = this.count % 2;
+            let selectedArray;
 
-                if (randomIndex == 0) {
-                    selectedArray = name1;
-                } else {
-                    selectedArray = name2;
-                }
-            const nameList =selectedArray;
+            if (randomIndex == 0) {
+                selectedArray = name1;
+            } else {
+                selectedArray = name2;
+            }
+            const nameList = selectedArray;
             // const nameList = ['WALL STREET #1', 'WALL STREET #2', 'WALL STREET #3', 'JOKER', 'YOUNG WOMEN'];
             chain_g.selectAll('text')
                 .data(nameList)
@@ -777,15 +826,15 @@ export default {
                     .join('text')
                     .attr('class', 'miaoshu')
                     .attr('x', 0)
-                    .attr('y', (d,r)=>65 + 20*r)
-                    .text(d=>d)
+                    .attr('y', (d, r) => 65 + 20 * r)
+                    .text(d => d)
                     .style('font-size', '20px')
-                
-                
+
+
             }
-            let t3 = ['Expressionism', 'simply means being able',' to convey emotions ','effectively.'];
-            let t1 = [ 'Experiential', 'Stanislavski','Tease the heart of',' the show' ];
-            let t2 = ['Methodism', `is the development of 'the `,`system 'Is to use`,' specific methods',' to solve the problem'];
+            let t3 = ['Expressionism', 'simply means being able', ' to convey emotions ', 'effectively.'];
+            let t1 = ['Experiential', 'Stanislavski', 'Tease the heart of', ' the show'];
+            let t2 = ['Methodism', `is the development of 'the `, `system 'Is to use`, ' specific methods', ' to solve the problem'];
             createExample("#ty", t1);
             createExample("#ff", t2);
             createExample("#bx", t3);
@@ -1013,12 +1062,12 @@ export default {
             const type = e;
             const that = this;
             this.perGudType = type;
-            const { Joker,JokerGuide, ws1, ws2, ws3, young_women } = subwayData;
+            const { Joker, JokerGuide, ws1, ws2, ws3, young_women } = subwayData;
             let data_ty = [];
-            for(let i in Joker){
+            for (let i in Joker) {
                 data_ty.push([Joker[i], JokerGuide[i]])
             }
-            const useData = this.perGudType=='ty'?Joker:this.perGudType=='ff'?ws1:ws2;
+            const useData = this.perGudType == 'ty' ? Joker : this.perGudType == 'ff' ? ws1 : ws2;
 
 
             //创建坐标系
@@ -1030,7 +1079,7 @@ export default {
                 right: 20
             }
             let usedataArray = new Array(useData.length).fill(1)
-            usedataArray = usedataArray.map((d,r)=>r+1)
+            usedataArray = usedataArray.map((d, r) => r + 1)
             // const colorScale = d3.scaleBand().domain(actorList).range(["#000000","#ffffff"])
             const xScale = d3.scaleBand().domain(useData).range([margin.left, width - margin.right]);
             const xScale_2 = d3.scaleBand().domain(usedataArray).range([margin.left, width - margin.right]);
@@ -1038,13 +1087,13 @@ export default {
             const yScale_2 = d3.scaleLinear().domain([0, 150]).range([height - margin.bottom, margin.top])
             const sizeScale = d3.scalePow().exponent(2).domain([0, d3.max(useData.map(d => d.length))]).range([5, 30])
 
-            const triData = useData.map(item=>{
-                    const data = [[xScale(item) + 20, yScale_2(item.length)],
-                                [xScale(item) + 20 - Math.random() * sizeScale(item.length) / 2, yScale_2(item.length) - sizeScale(item.length) * Math.random()],
-                                [xScale(item) + 20 + Math.random() * sizeScale(item.length) / 2, yScale_2(item.length) - 14 * Math.random()]                
-                    ];
-                    return data
-                });
+            const triData = useData.map(item => {
+                const data = [[xScale(item) + 20, yScale_2(item.length)],
+                [xScale(item) + 20 - Math.random() * sizeScale(item.length) / 2, yScale_2(item.length) - sizeScale(item.length) * Math.random()],
+                [xScale(item) + 20 + Math.random() * sizeScale(item.length) / 2, yScale_2(item.length) - 14 * Math.random()]
+                ];
+                return data
+            });
 
 
             const xAxis = d3.axisBottom(xScale_2)
@@ -1053,24 +1102,24 @@ export default {
 
 
             d3.select("#PerformanceGuidanceDetails").selectAll('*').remove()
-            
+
 
             const mainSvg_org = d3.select("#PerformanceGuidanceDetails")
                 .append('svg')
                 .attr('width', width)
                 .attr('height', height)
                 .attr('transform', `translate(0,0)`)
-            
+
             mainSvg_org.append('text')
-                        .attr('x',0)
-                        .attr('y',15)
-                        .style('font-size', '15px')
-                        .text(' Intensity/EMO')
+                .attr('x', 0)
+                .attr('y', 15)
+                .style('font-size', '15px')
+                .text(' Intensity/EMO')
             mainSvg_org.append('text')
-                        .attr('x',720)
-                        .attr('y',355)
-                        .style('font-size', '15px')
-                        .text('Index/ACT')
+                .attr('x', 720)
+                .attr('y', 355)
+                .style('font-size', '15px')
+                .text('Index/ACT')
             // const finalData = [dataRole]
             // console.log(finalData);
             const mainSvg = mainSvg_org.append("g")
@@ -1094,58 +1143,58 @@ export default {
                 .call(yAxis)
             var tooltip = d3.select("#tooltip_g");
             const ty_show = () => {
-                const core = (type == 'ty')?
-                mainSvg
-                    .selectAll('.ring_ty')
-                    .data(data_ty)
-                    .join('circle')
-                    .attr('class', 'ring_ty')
-                    .attr('r', d => sizeScale(d[0].length))
-                    .attr('cx', (d, r) => xScale(d[0]) + 20)
-                    .attr('cy', d => yScale_2(d[0].length))
-                    .style('fill', '#8aa3c8')
-                    .style('opacity', '.5')
-                    .on('mouseover', (e,d)=>{
-                        let xy = [e.pageX, e.pageY]
-                        that.guide_text = d[1]
-                        tooltip.style("display", "block")
-                            .style("left", (xy[0] + 10) + "px")
-                            .style("top", (xy[1]+ 10) + "px");
-                        // .append('text')
-                        // .attr('id', 'context')
-                        // .attr('x', xy[0])
-                        // .attr('y',xy[1])
-                        // .style('font-size', '20')
-                        // .text(`${d[1]}`)
-                    })
-                    .on('mouseout', ()=>{
-                        mainSvg_org.selectAll('#context').remove()
-                    })
-                    :mainSvg
-                    .selectAll('.ring_ty')
-                    .data(useData)
-                    .join('circle')
-                    .attr('class', 'ring_ty')
-                    .attr('r', d => sizeScale(d.length))
-                    .attr('cx', (d, r) => xScale(d) + 20)
-                    .attr('cy', d => yScale_2(d.length))
-                    .on('mouseover', (e,d)=>{
-                        let xy = [e.pageX, e.pageY]
-                        that.guide_text = d
-                        tooltip.style("display", "block")
-                            .style("left", (xy[0] + 10) + "px")
-                            .style("top", (xy[1]+ 10) + "px");
-                    })
-                    .style('fill', '#8aa3c8')
-                    .style('opacity', '.5')
-                    
+                const core = (type == 'ty') ?
+                    mainSvg
+                        .selectAll('.ring_ty')
+                        .data(data_ty)
+                        .join('circle')
+                        .attr('class', 'ring_ty')
+                        .attr('r', d => sizeScale(d[0].length))
+                        .attr('cx', (d, r) => xScale(d[0]) + 20)
+                        .attr('cy', d => yScale_2(d[0].length))
+                        .style('fill', '#8aa3c8')
+                        .style('opacity', '.5')
+                        .on('mouseover', (e, d) => {
+                            let xy = [e.pageX, e.pageY]
+                            that.guide_text = d[1]
+                            tooltip.style("display", "block")
+                                .style("left", (xy[0] + 10) + "px")
+                                .style("top", (xy[1] + 10) + "px");
+                            // .append('text')
+                            // .attr('id', 'context')
+                            // .attr('x', xy[0])
+                            // .attr('y',xy[1])
+                            // .style('font-size', '20')
+                            // .text(`${d[1]}`)
+                        })
+                        .on('mouseout', () => {
+                            mainSvg_org.selectAll('#context').remove()
+                        })
+                    : mainSvg
+                        .selectAll('.ring_ty')
+                        .data(useData)
+                        .join('circle')
+                        .attr('class', 'ring_ty')
+                        .attr('r', d => sizeScale(d.length))
+                        .attr('cx', (d, r) => xScale(d) + 20)
+                        .attr('cy', d => yScale_2(d.length))
+                        .on('mouseover', (e, d) => {
+                            let xy = [e.pageX, e.pageY]
+                            that.guide_text = d
+                            tooltip.style("display", "block")
+                                .style("left", (xy[0] + 10) + "px")
+                                .style("top", (xy[1] + 10) + "px");
+                        })
+                        .style('fill', '#8aa3c8')
+                        .style('opacity', '.5')
+
                 mainSvg
                     .selectAll('.ring_ty_2')
                     .data(triData)
                     .join('circle')
                     .attr('class', 'ring_ty_2')
-                    .attr('r', (d,r) => sizeScale(useData[r].length))
-                    .attr('cx', d=>d[1][0])
+                    .attr('r', (d, r) => sizeScale(useData[r].length))
+                    .attr('cx', d => d[1][0])
                     .attr('cy', d => d[1][1])
                     .style('fill', '#8aa3c8')
                     .style('opacity', '.5')
@@ -1154,10 +1203,10 @@ export default {
                     .data(triData)
                     .join('circle')
                     .attr('class', 'ring_ty_3')
-                    .attr('r', (d,r) => sizeScale(useData[r].length* Math.random()))
+                    .attr('r', (d, r) => sizeScale(useData[r].length * Math.random()))
                     // .attr('cx', (d, r) => xScale(d) + 20 + Math.random() * sizeScale(d.length) / 2)
                     // .attr('cy', d => yScale_2(d.length) - 14 * Math.random())
-                    .attr('cx', d=>d[2][0])
+                    .attr('cx', d => d[2][0])
                     .attr('cy', d => d[2][1])
                     .style('fill', '#8aa3c8')
                     .style('opacity', '.5')
@@ -1170,9 +1219,9 @@ export default {
                         return yScale_2(d.length)
                     })
                     .curve(d3.curveBasis);
-               
+
                 const triLineGen = d3.line()
-                                    .curve(d3.curveCatmullRomClosed.alpha(0.5))
+                    .curve(d3.curveCatmullRomClosed.alpha(0.5))
                 // triData.forEach(item => {
                 //     mainSvg.append('path')
                 //         .attr("d", triLineGen(item))
@@ -1195,7 +1244,7 @@ export default {
             // console.log(type);
             // type == 'ty' && ty_show();
             ty_show();
-            
+
 
             this.mixScriptLineGenerate();
         },
@@ -1240,7 +1289,7 @@ export default {
             ]
             // const heartData = this.$store.state.actorEmoSlug;
             const heartData = this.$store.state.emotionAll;
-            
+
             // let actorArray = []
             // actorArray = []
 
@@ -1273,27 +1322,27 @@ export default {
                 .y((d, r) => {
                     return r * 20 + 40
                 })
-                .x((d, r) => d==''?100:100 + 40 * emoScale(d))
+                .x((d, r) => d == '' ? 100 : 100 + 40 * emoScale(d))
                 .curve(d3.curveBasis)
-            
+
 
             d3.select("#emo_line").selectAll('*').remove()
-            const svg = d3.select("#emo_line").append('svg').attr('width', '100%').attr('height', '100%').attr('transform','translate(0,30)')
+            const svg = d3.select("#emo_line").append('svg').attr('width', '100%').attr('height', '100%').attr('transform', 'translate(0,30)')
 
-            svg 
+            svg
                 .append("line")
-                .attr('x1',20)
-                .attr('x2',280)
-                .attr('y1',20)
-                .attr('y2',20)
+                .attr('x1', 20)
+                .attr('x2', 280)
+                .attr('y1', 20)
+                .attr('y2', 20)
                 .attr('stroke', 'black')
                 .attr('stroke-width', '5px')
-            svg 
+            svg
                 .append("line")
-                .attr('x1',150)
-                .attr('x2',150)
-                .attr('y1',20)
-                .attr('y2',1000)
+                .attr('x1', 150)
+                .attr('x2', 150)
+                .attr('y1', 20)
+                .attr('y2', 1000)
                 .attr('stroke', 'black')
                 .attr('stroke-width', '3px')
             // 
@@ -1301,7 +1350,7 @@ export default {
             let a = 0
             const emo_index = heartData[index];
             emo_index.forEach(element => {
-                
+
                 // let blank = new Array(10).fill('nn')
                 let data = element['emotion']
                 // let data_f = []
@@ -1348,9 +1397,9 @@ export default {
 
         mixScriptLineGenerate() {
             // const dialogueTextData = ["Hi. Do you like to laugh? ", "It's okay. How would you know. It's okay. How would you know. It's okay. How would you know.", "I got fired. From the bank.", "Okay. Well, all the info is right there on the flyer."];
-            const { Joker,JokerGuide,ws1,ws2 } = subwayData;
-            
-            const dialogueTextData = this.perGudType=='ty'?Joker:this.perGudType=='ff'?ws1:ws2;
+            const { Joker, JokerGuide, ws1, ws2 } = subwayData;
+
+            const dialogueTextData = this.perGudType == 'ty' ? Joker : this.perGudType == 'ff' ? ws1 : ws2;
             d3.select('#emo_ring')
                 .selectAll('*')
                 .remove()
@@ -1426,12 +1475,12 @@ export default {
                 .attr("class", "emosingle")
                 .attr("d", arc)
                 // .attr("fill", d => "#" + Math.floor((d * 16777215)).toString(16))
-                .attr("fill", d => d3.schemeCategory10[Math.floor(10*Math.random())])
-                .on('mouseover', function(event, d) {
+                .attr("fill", d => d3.schemeCategory10[Math.floor(10 * Math.random())])
+                .on('mouseover', function (event, d) {
                     d3.select(this).transition()
-                                    .duration(200)
-                                    .attr('color','black')
-                                    .attr('transform', 'scale(1.3)');
+                        .duration(200)
+                        .attr('color', 'black')
+                        .attr('transform', 'scale(1.3)');
                     let xy = [event.offsetX, event.offsetY]
                     console.log(xy)
                     emoPendSvg
@@ -1440,15 +1489,15 @@ export default {
                         .attr('x', xy[0])
                         .attr('y', xy[1] + 10)
                         .style('font-size', '13')
-                        .text(`${emoConstrast[Math.floor(emoConstrast.length*Math.random())]}`)
-                    
-                    })
-                .on('mouseout', function(event, d) {
+                        .text(`${emoConstrast[Math.floor(emoConstrast.length * Math.random())]}`)
+
+                })
+                .on('mouseout', function (event, d) {
                     d3.select(this).transition()
-                                    .duration(200)
-                                    .attr('transform', 'scale(1)');
+                        .duration(200)
+                        .attr('transform', 'scale(1)');
                     d3.selectAll('#emo_context').remove()
-                    });
+                });
             srcRegion.attr("transform", `translate(${(srcWidth / 2)},${(srcHeight / 2)})`);
             // circle in core
             const coreCir = srcRegion.append('g').attr('id', "coreCir");
@@ -1467,22 +1516,25 @@ export default {
 </script>
 
 <style>
-body{
+body {
     font-family: Avenir, Helvetica, Arial, sans-serif;
 }
-.select{
-    margin:20px 20px;
+
+.select {
+    margin: 20px 20px;
 }
+
 .container_rhythm {
     display: grid;
     grid-template-columns: 4fr 1fr;
     /* 第一列宽度为9，第二列宽度为1 */
-   
+
     /* 列之间的间隔 */
     /* width: 2000px; */
     width: 100%;
 }
-.top_nav_box{
+
+.top_nav_box {
     display: grid;
     grid-template-columns: 80fr 21fr 25fr;
     /* 第一列宽度为9，第二列宽度为1 */
@@ -1490,19 +1542,21 @@ body{
     /* 列之间的间隔 */
     /* width: 2000px; */
 }
-.button_sc{
+
+.button_sc {
     padding: 5px 0;
     height: 30px;
 }
+
 .chartContainer {
     /* width: 1500px; */
     width: 100%;
     height: 600px;
     /* color: rgb(102, 102, 102); */
     font-family: Avenir, Helvetica, Arial, sans-serif;
-    font-size:1.1em;
+    font-size: 1.1em;
 
-    
+
     /* color: #f0c313; */
 }
 
@@ -1534,45 +1588,59 @@ body{
     grid-template-rows: 349px, 349px;
     /* 第一列宽度为9，第二列宽度为1 */
     grid-gap: 10px;
-   
+
 }
 
 #emo_ring {
     overflow: auto;
 }
 
-.button_box_nav{
+.button_box_nav {
     display: flex;
     justify-content: space-between;
     font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
 #tooltip_g {
-      position: absolute;
-      background-color: white;
-      border: 1px solid black;
-      border-radius: 5px;
-      padding: 5px;
-      display: none;
-      width: 400px; /* 固定宽度 */
-      word-wrap: break-word; /* 自动换行 */
-      height: auto;
-      white-space: pre-wrap;
-    }
-#emo_line{
+    position: absolute;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    display: none;
+    width: 400px;
+    /* 固定宽度 */
+    word-wrap: break-word;
+    /* 自动换行 */
+    height: auto;
+    white-space: pre-wrap;
+}
+
+#emo_line {
     height: 700px;
-    width: 350px; 
-    border-color: #dcdcdc; 
-    
+    width: 350px;
+    border-color: #dcdcdc;
+
     /* position: absolute; 
     left:2200px;
     top:750px; */
 }
+
 .text {
     font-size: 12px;
-  }
+}
 
-  .item {
+.item {
     margin-bottom: 18px;
-  }
+}
+
+#vertical-line {
+    position: absolute;
+    background-color: red;
+
+
+    width: 2px;
+    height: 510px;
+    top: 170px;
+}
 </style>
