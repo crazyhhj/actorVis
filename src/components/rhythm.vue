@@ -279,6 +279,7 @@ export default {
                                 animation: false,
                                 label: {
                                     backgroundColor: '#ccc',
+                                    // backgroundColor: 'rgba(0, 0, 0, 0.7)',
                                     borderColor: '#aaa',
                                     borderWidth: 1,
                                     shadowBlur: 0,
@@ -292,6 +293,7 @@ export default {
                                     return
                                 }
                                 return (
+                                    '<div style="background-color: rgba(0, 0, 0, 0);color: black;">'+
                                     data[params[2].name].screen.replace(/\d/g, '') +
                                     '<br />' +
                                     // '章节重要性分数: ' + params[0].value.toFixed(0) + '<br />' +
@@ -324,7 +326,8 @@ export default {
                                     When people on Wall Street start singing and making fun of the clown,<br /> he feels humiliated and angry, but still tries to stay calm. however，<br />
                                     As the situation deteriorates and the attacks on him intensify,<br /> the Joker's emotions spiral out of control, eventually leading to an outburst of violence<br />
                                     The Joker shoots one of the Wall Streeters and chases the other<br /> out of the subway, eventually killing them all.`
-                                );
+                                       + '</div>'
+                                    );
                             }
                         },
                         grid: {
@@ -1188,28 +1191,28 @@ export default {
                         .style('fill', '#8aa3c8')
                         .style('opacity', '.5')
 
-                mainSvg
-                    .selectAll('.ring_ty_2')
-                    .data(triData)
-                    .join('circle')
-                    .attr('class', 'ring_ty_2')
-                    .attr('r', (d, r) => sizeScale(useData[r].length))
-                    .attr('cx', d => d[1][0])
-                    .attr('cy', d => d[1][1])
-                    .style('fill', '#8aa3c8')
-                    .style('opacity', '.5')
-                mainSvg
-                    .selectAll('.ring_ty_3')
-                    .data(triData)
-                    .join('circle')
-                    .attr('class', 'ring_ty_3')
-                    .attr('r', (d, r) => sizeScale(useData[r].length * Math.random()))
-                    // .attr('cx', (d, r) => xScale(d) + 20 + Math.random() * sizeScale(d.length) / 2)
-                    // .attr('cy', d => yScale_2(d.length) - 14 * Math.random())
-                    .attr('cx', d => d[2][0])
-                    .attr('cy', d => d[2][1])
-                    .style('fill', '#8aa3c8')
-                    .style('opacity', '.5')
+                // mainSvg
+                //     .selectAll('.ring_ty_2')
+                //     .data(triData)
+                //     .join('circle')
+                //     .attr('class', 'ring_ty_2')
+                //     .attr('r', (d, r) => sizeScale(useData[r].length))
+                //     .attr('cx', d => d[1][0])
+                //     .attr('cy', d => d[1][1])
+                //     .style('fill', '#8aa3c8')
+                //     .style('opacity', '.5')
+                // mainSvg
+                //     .selectAll('.ring_ty_3')
+                //     .data(triData)
+                //     .join('circle')
+                //     .attr('class', 'ring_ty_3')
+                //     .attr('r', (d, r) => sizeScale(useData[r].length * Math.random()))
+                //     // .attr('cx', (d, r) => xScale(d) + 20 + Math.random() * sizeScale(d.length) / 2)
+                //     // .attr('cy', d => yScale_2(d.length) - 14 * Math.random())
+                //     .attr('cx', d => d[2][0])
+                //     .attr('cy', d => d[2][1])
+                //     .style('fill', '#8aa3c8')
+                //     .style('opacity', '.5')
 
                 const ty_line = d3.line()
                     .x((d, r) => {

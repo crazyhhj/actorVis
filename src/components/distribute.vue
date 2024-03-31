@@ -257,8 +257,8 @@ export default {
                     chapter_group_arc_innerRadius = .85*width/2,
                     chapter_group_arc_outerRadius = .9*width/2,
 
-                    actor_arc_innerRadius = .18*width/2,
-                    actor_arc_outerRadius = .2*width/2,
+                    actor_arc_innerRadius = .38*width/2,
+                    actor_arc_outerRadius = .4*width/2,
                     patch_circle_radius = .01*width/2;
                 
                 console.log(group_Sum);
@@ -374,13 +374,14 @@ export default {
                         .on('mouseout', function () {
                             d3.selectAll('.line-to-actor').remove()
                         })
-
+                let show_List = [1,2,8,11,15,16,45,46,56, 57,63, 64,79,80,90,91,101,102,106,107,121,122,126]
                 chapterGroup
                     .selectAll('.chapter-num')
                     .data(d=>d)
                     .join('text')
                         .attr('dx',-3)
                         .attr('dy','0.35em')
+                        // .attr('dy','4em')
                         .attr('transform', d=>{
                             for(let i = 0; i < midGroup.length; i++){
                                 if (d.id < midGroup[i].border + 1 ){
@@ -391,8 +392,8 @@ export default {
                             let angle = 180 + midGroup[midGroup.length -1 ]/metaLen * 360 - (d.id-midGroup[midGroup.length -1 ].mid)/3;
                             return `rotate(${ angle + 90}) translate(${chapter_loop_radius + 30}) rotate(${- angle - 90})`
                         })
-                        .style('font-size', '10px')
-                        .text(d=>d.id)
+                        .style('font-size', '25px')
+                        .text(d=>{return show_List.includes(d.id)?d.id:''})
                         
 
                 let fir = d3.selectAll('.main .trans-group').selectAll('.unit')
@@ -434,6 +435,26 @@ export default {
                     .append('g')
                     .attr('class','actor')
 
+                actor_g.selectAll('.actor_sign')
+                        .data(actor10)
+                        .join("rect")
+                        .attr('class', 'actor_sign')
+                        .attr('width', 10)
+                        .attr('height', 10)
+                        .attr('x', 440)
+                        .attr('y', (d,r)=>350 + 22*r)
+                        .style('fill', d=>colorScale(d.name))
+
+                actor_g
+                    .selectAll('.actor_sign_text')
+                    .data(actor10)
+                    .join('text')
+                        .attr('x', 455)
+                        .attr('y', (d,r)=>357 + 22*r)
+                        .text(d=>d.name)
+                        .style('font-size', 15)
+
+
                 var arc_actor = d3.arc()
                     .innerRadius(actor_arc_innerRadius)
                     .outerRadius(actor_arc_outerRadius)
@@ -441,7 +462,6 @@ export default {
                     .endAngle((d,i)=> d3.sum(actor10.slice(0,i+1).map(d=>d.fre))/actor10_len * 2*Math.PI )
                     .padAngle(.05)
                 function change (c){
-                    console.log('done');
                     d3.selectAll(`.${c}`)
                         .transition()
                         .duration(500)
@@ -483,20 +503,20 @@ export default {
                         .attr('transform', (d,i)=>`rotate(${(d3.sum(actor10.slice(0,i+1).map(d=>d.fre)))/actor10_len * 360 +180 - 2.18})`)
                         .style('fill', d=>colorScale(d.name))
                         .style('opacity', 1)
-                actor_g
-                    .selectAll('.actor')
-                    .data(actor10)
-                    .join('text')
-                        .attr('x', 0)
-                        .attr('y', 0)
-                        .text(d=>d.name)
-                        .style('font-size', 10)
-                        .attr('transform',(d,i)=>`rotate(
-                            ${(d3.sum(actor10.slice(0,i+1).map(d=>d.fre))-d.fre/2)/actor10_len * 360 -90}
-                            ), 
-                            translate(${actor_arc_outerRadius + 10},0),
-                            rotate(${0})
-                            `)
+                // actor_g
+                //     .selectAll('.actor')
+                //     .data(actor10)
+                //     .join('text')
+                //         .attr('x', 0)
+                //         .attr('y', 0)
+                //         .text(d=>d.name)
+                //         .style('font-size', 10)
+                //         .attr('transform',(d,i)=>`rotate(
+                //             ${(d3.sum(actor10.slice(0,i+1).map(d=>d.fre))-d.fre/2)/actor10_len * 360 -90}
+                //             ), 
+                //             translate(${actor_arc_outerRadius + 10},0),
+                //             rotate(${0})
+                //             `)
                 
                 main_g
                     .selectAll('.test')
@@ -505,8 +525,10 @@ export default {
                         .attr('r',10*scale)
                         .attr('cx',0)
                         .attr('cy',d=>{
-                            actor_hover_dot[d.name] = actor_arc_outerRadius + Math.sqrt(1000*d.name.length)
-                            return actor_arc_outerRadius + Math.sqrt(1000*d.name.length)
+                            // actor_hover_dot[d.name] = actor_arc_outerRadius + Math.sqrt(1000*d.name.length)
+                            actor_hover_dot[d.name] = actor_arc_outerRadius
+                            // return actor_arc_outerRadius + Math.sqrt(1000*d.name.length)
+                            return actor_arc_outerRadius -7
                         })
                         .attr('transform',(d,i)=>{
                             actor_angle_group[`${d.name}`] = (d3.sum(actor10.slice(0,i+1).map(d=>d.fre)) - d.fre/2)/actor10_len * 360 +180;
